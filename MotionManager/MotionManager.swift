@@ -36,10 +36,11 @@ final class MotionManager: ObservableObject{
         motion.startDeviceMotionUpdates(to: queue) { data, error in
             // dataはオプショナル型なので、安全に取り出す
             if let validData = data {
-                self.x = validData.gravity.x
-                self.y = validData.gravity.y
-                self.z = validData.gravity.z
-                
+                DispatchQueue.main.async {
+                    self.x = validData.gravity.x
+                    self.y = validData.gravity.y
+                    self.z = validData.gravity.z
+                }
                 print("x: \(self.x)")
                 print("y: \(self.y)")
                 print("z: \(self.z)")
