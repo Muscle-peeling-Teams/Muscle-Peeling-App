@@ -9,13 +9,20 @@ import SwiftUI
 
 struct ContentView: View {
     // MotionManagerのインスタンスを利用する
-    let motionManager = MotionManager.shared
+    @StateObject var motionManager: MotionManager = .shared
     
     var body: some View {
         Button("motionManager"){
             motionManager.startQueuedUpdates()
         }
         .font(.title)
+        Spacer()
+        Text("x: \(String(format: "%.2f",motionManager.x))")
+        Spacer()
+        Text("y: \(String(format: "%.2f",motionManager.y))")
+        Spacer()
+        Text("z: \(String(format: "%.2f",motionManager.z))")
+        Spacer()
     }
 }
 
@@ -24,3 +31,4 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+

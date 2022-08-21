@@ -8,7 +8,7 @@
 import Foundation
 import CoreMotion
 
-final class MotionManager {
+final class MotionManager: ObservableObject{
     // staticでインスタンスを保持しておく
     // MotionManager.sharedでアクセスができる
     static let shared: MotionManager = .init()
@@ -16,6 +16,10 @@ final class MotionManager {
     private let motion = CMMotionManager()
     
     private let queue = OperationQueue()
+    
+    @Published var x = 0.00
+    @Published var y = 0.00
+    @Published var z = 0.00
     
     // シングルトンにするためにinitを潰す
     private init() {}
@@ -32,13 +36,13 @@ final class MotionManager {
         motion.startDeviceMotionUpdates(to: queue) { data, error in
             // dataはオプショナル型なので、安全に取り出す
             if let validData = data {
-                let x = String(format: "%.2f", validData.gravity.x)
-                let y = String(format: "%.2f", validData.gravity.y)
-                let z = String(format: "%.2f", validData.gravity.z)
+                self.x = validData.gravity.x
+                self.y = validData.gravity.y
+                self.z = validData.gravity.z
                 
-                print("x: \(x)")
-                print("y: \(y)")
-                print("z: \(z)")
+                print("x: \(self.x)")
+                print("y: \(self.y)")
+                print("z: \(self.z)")
             }
         }
     }
