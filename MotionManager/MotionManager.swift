@@ -34,6 +34,8 @@ final class MotionManager: ObservableObject{
     
     var timer: Timer?
     var trainingTimer: Timer?
+    var speakTimer: Timer?
+    var stopSpeacTimer: Timer?
     
     // シングルトンにするためにinitを潰す
     private init() {}
@@ -55,7 +57,6 @@ final class MotionManager: ObservableObject{
                     self.y = validData.gravity.y
                     self.z = validData.gravity.z
                 }
-            
                 print("x: \(self.x)")
                 print("y: \(self.y)")
                 print("z: \(self.z)")
@@ -77,6 +78,8 @@ final class MotionManager: ObservableObject{
     }
     
     func plank() {
+        speakTimes()
+        var plankTime = 60.0
         speeche(text: "スタート")
         startQueuedUpdates()
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
@@ -87,19 +90,40 @@ final class MotionManager: ObservableObject{
             } else {
                 self.sensorSucess = false
             }
+            plankTime -= 0.1
+            if plankTime <= 0.0 {
+                self.trainingTimer?.invalidate()
+                self.speakTimer?.invalidate()
+                self.speeche(text: "終了")
+            }
+        }
+    }
+    
+    func speakTimes() {
+        speakTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            if self.x >= -0.08 {
+                self.speakTimer?.invalidate()
+                self.speeche(text: "もう少し腰を落としましょう")
+                self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                    if !self.speechSynthesizer.isSpeaking {
+                        self.stopSpeacTimer?.invalidate()
+                        self.speakTimes()
+                    }
+                }
+            }
         }
     }
     
     // 自動音声機能
     func speeche(text: String) {
-      // AVSpeechSynthesizerのインスタンス作成
-      speechSynthesizer = AVSpeechSynthesizer()
-      // 読み上げる、文字、言語などの設定
-      let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
-      utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
-      utterance.rate = 0.5 // 読み上げ速度
-      utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
-      speechSynthesizer.speak(utterance)
+        // AVSpeechSynthesizerのインスタンス作成
+        speechSynthesizer = AVSpeechSynthesizer()
+        // 読み上げる、文字、言語などの設定
+        let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
+        utterance.rate = 0.5 // 読み上げ速度
+        utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
+        speechSynthesizer.speak(utterance)
     }
 }
 
