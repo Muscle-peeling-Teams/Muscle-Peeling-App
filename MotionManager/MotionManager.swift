@@ -17,11 +17,11 @@ final class MotionManager: ObservableObject{
     
     private let queue = OperationQueue()
     
-    @Published var backColor = Color.white
+    var backColor = Color.white
     
     @Published var sensorSucess = false
     
-    @Published var systemImage = "xmark"
+    var systemImage = "xmark"
     
     @Published var x = 0.00
     @Published var y = 0.00
@@ -30,6 +30,7 @@ final class MotionManager: ObservableObject{
     @Published var countDown = 5
     
     var timer: Timer?
+    var trainingTimer: Timer?
     
     // シングルトンにするためにinitを潰す
     private init() {}
@@ -74,16 +75,11 @@ final class MotionManager: ObservableObject{
     
     func plank() {
         startQueuedUpdates()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             self.systemImage = self.sensorSucess ? "circle":"xmark"
             self.backColor = self.sensorSucess ? Color.white : Color.red
-            // TODO: 他の分岐方法を考える
             if self.x <= -0.08 && self.x >= -0.12 {
-                if self.y <= 1.00 && self.y >= 0.98 || self.y >= -1.00 && self.y <= -0.98 {
-                    self.sensorSucess = true
-                } else {
-                    self.sensorSucess = false
-                }
+                self.sensorSucess = true
             } else {
                 self.sensorSucess = false
             }
