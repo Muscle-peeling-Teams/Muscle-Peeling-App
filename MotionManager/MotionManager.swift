@@ -7,6 +7,7 @@
 
 import CoreMotion
 import SwiftUI
+import AVFoundation
 
 final class MotionManager: ObservableObject{
     // staticでインスタンスを保持しておく
@@ -18,6 +19,8 @@ final class MotionManager: ObservableObject{
     private let queue = OperationQueue()
     
     var backColor = Color.white
+    
+    private var speechSynthesizer: AVSpeechSynthesizer!
     
     @Published var sensorSucess = false
     
@@ -74,6 +77,7 @@ final class MotionManager: ObservableObject{
     }
     
     func plank() {
+        speeche(text: "スタート")
         startQueuedUpdates()
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             self.systemImage = self.sensorSucess ? "circle":"xmark"
@@ -85,4 +89,20 @@ final class MotionManager: ObservableObject{
             }
         }
     }
+    
+    // 自動音声機能
+    func speeche(text: String) {
+      // AVSpeechSynthesizerのインスタンス作成
+      speechSynthesizer = AVSpeechSynthesizer()
+      // 読み上げる、文字、言語などの設定
+      let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
+      utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
+      utterance.rate = 0.5 // 読み上げ速度
+      utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
+      speechSynthesizer.speak(utterance)
+    }
 }
+
+
+
+
