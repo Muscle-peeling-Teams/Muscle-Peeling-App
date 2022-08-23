@@ -65,6 +65,7 @@ final class MotionManager: ObservableObject{
     }
     
     func startTimer() {
+        self.countDown = 5
         sensorSucess = true
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.countDown -= 1
@@ -107,6 +108,10 @@ final class MotionManager: ObservableObject{
                 self.speakTimer?.invalidate()
                 self.speeche(text: "もう少し腰を落としましょう")
                 self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                    if self.x <= -0.08 && self.x >= -0.12 {
+                        self.speechSynthesizer.pauseSpeaking(at: .word)
+                        self.speeche(text: "その位置です！")
+                    }
                     if !self.speechSynthesizer.isSpeaking {
                         self.stopSpeacTimer?.invalidate()
                         self.speakTimes()
@@ -116,6 +121,10 @@ final class MotionManager: ObservableObject{
                 self.speakTimer?.invalidate()
                 self.speeche(text: "もう少し腰を上げましょう")
                 self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                    if self.x <= -0.08 && self.x >= -0.12 {
+                        self.speechSynthesizer.pauseSpeaking(at: .word)
+                        self.speeche(text: "その位置です！")
+                    }
                     if !self.speechSynthesizer.isSpeaking {
                         self.stopSpeacTimer?.invalidate()
                         self.speakTimes()
@@ -134,6 +143,7 @@ final class MotionManager: ObservableObject{
         utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
         utterance.rate = 0.5 // 読み上げ速度
         utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
+        utterance.preUtteranceDelay = 0.0
         speechSynthesizer.speak(utterance)
     }
 }
