@@ -20,16 +20,20 @@ final class MotionManager: ObservableObject{
     
     var backColor = Color.white
     
+    // 音声
     private var speechSynthesizer: AVSpeechSynthesizer!
     
-    @Published var sensorSucess = false
+    // トレーニングを行えているか
+    @Published var trainingSucess = false
     
     var systemImage = "xmark"
     
-    @Published var x = 0.00
-    @Published var y = 0.00
-    @Published var z = 0.00
+    // センサーの値
+    var x = 0.00
+    var y = 0.00
+    var z = 0.00
     
+    // トレーニング時のボタンを透明にする
     @Published var buttonOpacity = true
     
     @Published var countDown = 5
@@ -44,10 +48,10 @@ final class MotionManager: ObservableObject{
     
     func startQueuedUpdates() {
         // ジャイロセンサーが使えない場合はこの先の処理をしない
-        guard motion.isGyroAvailable else { return }
+        guard motion.isDeviceMotionAvailable else { return }
         
         // 更新感覚
-        motion.gyroUpdateInterval = 6.0 / 60.0 // 0.1秒間隔
+        motion.deviceMotionUpdateInterval = 6.0 / 60.0 // 0.1秒間隔
         
         // 加速度センサーを利用して値を取得する
         // 取ってくるdataの型はCMAcccerometterData?になっている
@@ -66,73 +70,92 @@ final class MotionManager: ObservableObject{
         }
     }
     
+    // カウントダウン
     func startTimer() {
-        buttonOpacity.toggle()
         self.countDown = 5
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.countDown -= 1
             print("\(self.countDown)")
             if self.countDown <= 0 {
                 self.timer?.invalidate()
-                // TODO:複数対応できるように変更
+                self.buttonOpacity.toggle()
+                // TODO: 複数対応できるように変更
                 self.plank()
             }
         }
     }
     
+    // プランク
     func plank() {
         speakTimes()
-        var plankTime = 60.0
         speeche(text: "スタート")
         startQueuedUpdates()
+        
+        trainingTime()
+    }
+    
+    // トレーニング（制限時間式）
+    func trainingTime() {
+        
+        var plankTime = 60.0
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            self.systemImage = self.sensorSucess ? "circle":"xmark"
-            self.backColor = self.sensorSucess ? Color.white : Color.red
+            self.systemImage = self.trainingSucess ? "circle":"xmark"
+            self.backColor = self.trainingSucess ? Color.white : Color.red
+            // 複数対応できるように対応する
             if self.x <= -0.08 && self.x >= -0.12 {
-                self.sensorSucess = true
+                self.trainingSucess = true
             } else {
-                self.sensorSucess = false
+                self.trainingSucess = false
             }
             plankTime -= 0.1
-            if plankTime <= 0.0 {
-                // 終了
-                self.trainingTimer?.invalidate()
-                self.speakTimer?.invalidate()
-                self.stopSpeacTimer?.invalidate()
-                self.speeche(text: "終了")
-                self.buttonOpacity.toggle()
+        }
+        
+        if plankTime <= 0.0 {
+            self.stopTraining()
+        }
+    }
+    
+    // トレーニング終了
+    func stopTraining() {
+        // 終了
+        self.motion.stopDeviceMotionUpdates()
+        self.trainingTimer?.invalidate()
+        self.speakTimer?.invalidate()
+        self.stopSpeacTimer?.invalidate()
+        self.speeche(text: "終了")
+        self.buttonOpacity.toggle()
+        print("終了")
+    }
+    
+    // 音声作動範囲
+    func speakTimes() {
+        speakTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            if self.x >= -0.08 {
+                // TODO: 複数対応できるようにadviceとsucessの部分を配列で読ませる
+                self.adviceSensor(advice: "もう少し腰を下げましょう", sucess: "その位置です")
+            } else if self.x <= -0.12 {
+                // TODO: 複数対応できるようにadviceとsucessの部分を配列で読ませる
+                self.adviceSensor(advice: "もう少し腰を上げましょう", sucess: "その位置です")
             }
         }
     }
     
-    func speakTimes() {
-        speakTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            if self.x >= -0.08 {
-                self.speakTimer?.invalidate()
-                self.speeche(text: "もう少し腰を落としましょう")
-                self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                    if self.x <= -0.08 && self.x >= -0.12 {
-                        self.speechSynthesizer.pauseSpeaking(at: .word)
-                        self.speeche(text: "その位置です！")
-                    }
-                    if !self.speechSynthesizer.isSpeaking {
-                        self.stopSpeacTimer?.invalidate()
-                        self.speakTimes()
-                    }
+    // 音声指導
+    func adviceSensor(advice: String, sucess: String) {
+        self.speakTimer?.invalidate()
+        self.speeche(text: advice)
+        self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            // 複数の値に対応できるようにする
+            if self.x <= -0.08 && self.x >= -0.12 {
+                // 現在音声が動作中か
+                if self.speechSynthesizer.isSpeaking {
+                    self.speechSynthesizer.pauseSpeaking(at: .word)
                 }
-            } else if self.x <= -0.12 {
-                self.speakTimer?.invalidate()
-                self.speeche(text: "もう少し腰を上げましょう")
-                self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                    if self.x <= -0.08 && self.x >= -0.12 {
-                        self.speechSynthesizer.pauseSpeaking(at: .word)
-                        self.speeche(text: "その位置です！")
-                    }
-                    if !self.speechSynthesizer.isSpeaking {
-                        self.stopSpeacTimer?.invalidate()
-                        self.speakTimes()
-                    }
-                }
+                self.speeche(text: sucess)
+            }
+            if !self.speechSynthesizer.isSpeaking {
+                self.stopSpeacTimer?.invalidate()
+                self.speakTimes()
             }
         }
     }

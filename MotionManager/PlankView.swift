@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PlankView: View {
-    @ObservedObject var motionManager : MotionManager  = .shared
+    @ObservedObject var motionManager : MotionManager
     var body: some View {
         ZStack {
             motionManager.backColor
@@ -19,12 +19,13 @@ struct PlankView: View {
                     .resizable()
                     .frame(width: 70, height: 70)
                 Spacer()
-                if (motionManager.sensorSucess) {
-                    Text("\(motionManager.countDown)")
+                if (motionManager.trainingSucess) {
+                    Text("\(Int(motionManager.countDown))")
+                        .opacity(motionManager.buttonOpacity ? 1.0 : 0.0)
                 } else {
                     Button("START"){
+                        motionManager.trainingSucess = true
                         motionManager.startTimer()
-                        motionManager.sensorSucess = true
                     }
                     .font(.largeTitle)
                     .opacity(motionManager.buttonOpacity ? 1.0 : 0.0)
@@ -34,11 +35,5 @@ struct PlankView: View {
             }
         }
         
-    }
-}
-
-struct PlankView_Previews: PreviewProvider {
-    static var previews: some View {
-        PlankView()
     }
 }
