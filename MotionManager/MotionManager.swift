@@ -112,7 +112,7 @@ final class MotionManager: ObservableObject{
                         self.speakTimes()
                     }
                 }
-            } else if self.x > -0.12 {
+            } else if self.x <= -0.12 {
                 self.speakTimer?.invalidate()
                 self.speeche(text: "もう少し腰を上げましょう")
                 self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
