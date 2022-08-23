@@ -92,6 +92,7 @@ final class MotionManager: ObservableObject{
             }
             plankTime -= 0.1
             if plankTime <= 0.0 {
+                // 終了
                 self.trainingTimer?.invalidate()
                 self.speakTimer?.invalidate()
                 self.speeche(text: "終了")
@@ -104,6 +105,15 @@ final class MotionManager: ObservableObject{
             if self.x >= -0.08 {
                 self.speakTimer?.invalidate()
                 self.speeche(text: "もう少し腰を落としましょう")
+                self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+                    if !self.speechSynthesizer.isSpeaking {
+                        self.stopSpeacTimer?.invalidate()
+                        self.speakTimes()
+                    }
+                }
+            } else if self.x > -0.12 {
+                self.speakTimer?.invalidate()
+                self.speeche(text: "もう少し腰を上げましょう")
                 self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
                     if !self.speechSynthesizer.isSpeaking {
                         self.stopSpeacTimer?.invalidate()
