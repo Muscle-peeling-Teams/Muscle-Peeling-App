@@ -24,9 +24,10 @@ struct PlankView: View {
                 } else {
                     Button("START"){
                         motionManager.startTimer()
+                        motionManager.sensorSucess = true
                     }
                     .font(.largeTitle)
-                    .opacity(motionManager.a ? 1.0 : 0.0)
+                    .opacity(motionManager.buttonOpacity ? 1.0 : 0.0)
                 }
                 Spacer()
                 

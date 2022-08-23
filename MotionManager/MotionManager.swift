@@ -30,7 +30,7 @@ final class MotionManager: ObservableObject{
     @Published var y = 0.00
     @Published var z = 0.00
     
-    @Published var a = true
+    @Published var buttonOpacity = true
     
     @Published var countDown = 5
     
@@ -67,9 +67,8 @@ final class MotionManager: ObservableObject{
     }
     
     func startTimer() {
-        a.toggle()
+        buttonOpacity.toggle()
         self.countDown = 5
-        sensorSucess = true
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             self.countDown -= 1
             print("\(self.countDown)")
@@ -101,7 +100,7 @@ final class MotionManager: ObservableObject{
                 self.speakTimer?.invalidate()
                 self.stopSpeacTimer?.invalidate()
                 self.speeche(text: "終了")
-                self.a.toggle()
+                self.buttonOpacity.toggle()
             }
         }
     }
