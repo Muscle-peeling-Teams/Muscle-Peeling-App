@@ -95,6 +95,7 @@ final class MotionManager: ObservableObject{
                 // 終了
                 self.trainingTimer?.invalidate()
                 self.speakTimer?.invalidate()
+                self.stopSpeacTimer?.invalidate()
                 self.speeche(text: "終了")
             }
         }
