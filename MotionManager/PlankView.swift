@@ -26,6 +26,7 @@ struct PlankView: View {
                         motionManager.startTimer()
                     }
                     .font(.largeTitle)
+                    .opacity(motionManager.a ? 1.0 : 0.0)
                 }
                 Spacer()
                 
