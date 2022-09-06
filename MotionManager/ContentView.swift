@@ -9,10 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     // MotionManagerのインスタンスを利用する
-    @StateObject var motionManager: MotionManager = .shared
-    
+    @StateObject var plankViewManager: PlankViewManager = .shared
+    @StateObject var absViewManager: AbsViewManager = .shared
+    @State var isChanged = false
     var body: some View {
-        PlankView(motionManager: motionManager)
+        if !isChanged {
+            PlankView(plankViewManager: plankViewManager, isChanged: $isChanged)
+        } else {
+            AbsView(absViewManager: absViewManager, isChanged: $isChanged)
+        }
     }
 }
 

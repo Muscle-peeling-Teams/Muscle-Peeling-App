@@ -9,10 +9,10 @@ import CoreMotion
 import SwiftUI
 import AVFoundation
 
-final class MotionManager: ObservableObject{
+final class PlankViewManager: ObservableObject{
     // staticでインスタンスを保持しておく
     // MotionManager.sharedでアクセスができる
-    static let shared: MotionManager = .init()
+    static let shared: PlankViewManager = .init()
     // privateのletでCMMotionManagerインスタンスを作成する
     private let motion = CMMotionManager()
     

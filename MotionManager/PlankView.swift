@@ -1,6 +1,6 @@
 //
 //  PlankView.swift
-//  MotionManager
+//  PlankViewManager
 //
 //  Created by 稗田一亜 on 2022/08/21.
 //
@@ -8,27 +8,34 @@
 import SwiftUI
 
 struct PlankView: View {
-    @ObservedObject var motionManager : MotionManager
+    @ObservedObject var plankViewManager : PlankViewManager
+    @Binding var isChanged : Bool
     var body: some View {
         ZStack {
-            motionManager.backColor
+            plankViewManager.backColor
                 .ignoresSafeArea()
             VStack {
                 Spacer()
-                Image(systemName: motionManager.systemImage)
+                Image(systemName:
+                    plankViewManager.systemImage)
                     .resizable()
                     .frame(width: 70, height: 70)
                 Spacer()
-                if (motionManager.trainingSucess) {
-                    Text("\(Int(motionManager.countDown))")
-                        .opacity(motionManager.buttonOpacity ? 1.0 : 0.0)
+                if (plankViewManager.trainingSucess) {
+                    Text("\(Int(plankViewManager.countDown))")
+                        .opacity(plankViewManager.buttonOpacity ? 1.0 : 0.0)
                 } else {
                     Button("START"){
-                        motionManager.trainingSucess = true
-                        motionManager.startTimer()
+                        plankViewManager.trainingSucess = true
+                        plankViewManager.startTimer()
                     }
                     .font(.largeTitle)
-                    .opacity(motionManager.buttonOpacity ? 1.0 : 0.0)
+                    .opacity(plankViewManager.buttonOpacity ? 1.0 : 0.0)
+                    Button("腹筋"){
+                        isChanged = true
+                    }
+                    .font(.largeTitle)
+                    .opacity(plankViewManager.buttonOpacity ? 1.0 : 0.0)
                 }
                 Spacer()
                 
