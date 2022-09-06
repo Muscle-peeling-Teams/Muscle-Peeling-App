@@ -21,8 +21,8 @@ final class MotionManager: ObservableObject{
     var backColor = Color.white
     
     // 音声
-    private var speechSynthesizer = AVSpeechSynthesizer()
-
+    private var speechSynthesizer : AVSpeechSynthesizer!
+    
     
     // トレーニングを行えているか
     @Published var trainingSucess = false
@@ -104,6 +104,7 @@ final class MotionManager: ObservableObject{
         
         var plankTime = 5.0
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            print("print\(self.setCount)")
             self.systemImage = self.trainingSucess ? "circle":"xmark"
             self.backColor = self.trainingSucess ? Color.white : Color.red
             // 複数対応できるように対応する
@@ -114,16 +115,18 @@ final class MotionManager: ObservableObject{
             }
             plankTime -= 0.1
             print("\(plankTime)")
-            
             if plankTime <= 0.0 {
                 self.setCount += 1
-                if (self.setCount < self.setMaxCount) {
+                if (self.setCount <= self.setMaxCount) {
                     self.pauseTraining()
                 } else {
                     self.stopTraining()
                 }
+                
             }
         }
+        
+        
         
     }
     
@@ -154,7 +157,7 @@ final class MotionManager: ObservableObject{
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
         self.stopSpeacTimer?.invalidate()
-        self.speeche(text: "終了")
+        self.speeche(text: "お疲れさまでした")
         self.buttonOpacity.toggle()
         print("終了")
     }
@@ -195,6 +198,7 @@ final class MotionManager: ObservableObject{
     // 自動音声機能
     func speeche(text: String) {
         // AVSpeechSynthesizerのインスタンス作成
+        speechSynthesizer = AVSpeechSynthesizer()
         // 読み上げる、文字、言語などの設定
         let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
         utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
@@ -204,7 +208,3 @@ final class MotionManager: ObservableObject{
         speechSynthesizer.speak(utterance)
     }
 }
-
-
-
-
