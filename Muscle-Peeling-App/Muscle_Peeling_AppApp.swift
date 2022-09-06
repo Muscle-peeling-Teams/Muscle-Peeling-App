@@ -11,7 +11,8 @@ import SwiftUI
 struct Muscle_Peeling_AppApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+//            ContentView()
+            SquatView()
         }
     }
 }

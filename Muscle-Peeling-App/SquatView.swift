@@ -13,64 +13,213 @@ struct phone {
 }
 
 struct SquatView: View {
+    @StateObject var model = SquatModel()
+    let viewList = ["select","settingA","settingB","up","down","finish"]
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            
+        VStack(spacing: 20) {
+            Text("\(model.timeCountDown)    ").frame(width: phone.w, height: 30, alignment: .trailing)
+            if model.nowDisp == "select" {
+                selectSetView(model: model)
+                InstructionTextView(disp: $model.nowDisp)
+            } else if model.nowDisp == "finish" {
+                SquatImage(disp: $model.nowDisp)
+                InstructionTextView(disp: $model.nowDisp)
+                Button(action: {
+                    model.nowDisp = "settingA"
+                }){
+                    RoundedRectangle(cornerRadius: 50)
+                        .frame(width: 200, height: 60)
+                        .foregroundColor(Color.blue)
+                        .overlay(
+                            Text("ホームへ")
+                                .font(.largeTitle)
+                                .foregroundColor(Color.white)
+                                .fontWeight(.heavy)
+                        )
+                }
+            } else {
+                Guide_SquatView(model: model)
+            }
+            if model.nowDisp == "up" ||  model.nowDisp == "down"{
+                HStack(spacing: 50) {
+                    Button(action: {
+                        
+                    }){
+                        VStack(spacing: 3) {
+                            Text("一時停止")
+                                .foregroundColor(Color.black)
+                            Circle()
+                                .frame(width: phone.w/4, height: phone.w/4)
+                                .foregroundColor(Color.gray)
+                                .overlay(
+                                    Text("||")
+                                        .font(.largeTitle)
+                                        .fontWeight(.heavy)
+                                        .foregroundColor(Color.black)
+                                )
+                        }
+                    }
+                    Button(action: {
+                        
+                    }){
+                        VStack(spacing: 3) {
+                            Text("中止")
+                                .foregroundColor(Color.black)
+                            Circle()
+                                .frame(width: phone.w/4, height: phone.w/4)
+                                .foregroundColor(Color.gray)
+                                .overlay(
+                                    Text("■")
+                                        .font(.largeTitle)
+                                        .fontWeight(.heavy)
+                                        .foregroundColor(Color.red)
+                                )
+                        }
+                    }
+                }
+            }
+            HStack {
+                ForEach(viewList, id: \.self){ name in
+                    Button(action: {
+                        model.nowDisp = name
+                    }){
+                        Text("\(name)")
+                            .padding(3)
+                            .border(Color.black)
+                    }
+                }
+            }
+        }
+            
+            VStack {
+                Text("STAND: \(model.standValue)")
+                Text("SIT: \(model.loweredValue)")
+                Text("NOW: \(model.nowValue)")
+            }
+            
+        }
+    }
+}
+
+struct selectSetView: View {
+    @StateObject var model: SquatModel
+    var body: some View {
+        VStack {
+            SquatImage(disp: $model.nowDisp)
+            HStack {
+                Button(action: {
+                    model.setCount -= 1
+                }){
+                    Text("-")
+                }
+                Text("セット数: \(model.setCount)")
+                    .font(.custom("Hiragino Mincho ProN", size: 25))
+                Button(action: {
+                    model.setCount -= 1
+                }){
+                    Text("+")
+                }
+            }
+            
+            HStack {
+                Button(action: {
+                    model.numInSet -= 1
+                }){
+                    Text("-")
+                }
+                Text("１セット: \(model.setCount)回")
+                    .font(.custom("Hiragino Mincho ProN", size: 25))
+                Button(action: {
+                    model.numInSet -= 1
+                }){
+                    Text("+")
+                }
+            }
+            
+            Button(action: {
+                model.nowDisp = "settingA"
+            }){
+                RoundedRectangle(cornerRadius: 50)
+                    .frame(width: 200, height: 60)
+                    .foregroundColor(Color.blue)
+                    .overlay(
+                        Text("START")
+                            .font(.largeTitle)
+                            .foregroundColor(Color.white)
+                            .fontWeight(.heavy)
+                    )
+            }
+            
+        }
+        
+    }
+}
+
+
+
+struct Guide_SquatView: View {
+    @StateObject var model: SquatModel
+    var body: some View {
+        VStack {
+            Text("第 \(model.count.remainingSet) セット  \(model.count.remainingCount) 回目")
+                .font(.custom("Hiragino Mincho ProN", size: 30))
+            SquatImage(disp: $model.nowDisp)
+            InstructionTextView(disp: $model.nowDisp)
+        }.onAppear(){
+            model.valueSettingA()
+        }
+    }
+}
+
+struct SquatImage: View {
+    @Binding var disp: String
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 5)
+                .frame(width: phone.w*0.7 + 5, height:  phone.w*0.9 + 5)
+                .foregroundColor(Color.gray)
+                .shadow(color: Color.gray, radius: 10, x: 0, y: 0)
+            Group {
+                if disp == "select" {
+                    Image("squat_set").resizable()
+                } else if disp == "settingA" || disp == "up"{
+                    // 立ってる
+                    Image("squat_stand").resizable()
+                } else if disp == "settingB" || disp == "down"{
+                    // しゃがんでる
+                    Image("squat_sit").resizable()
+                } else if disp == "finish" {
+                    // お疲れ様
+                    Image("squat_sit").resizable()
+                }
+            }.frame(width: phone.w*0.7, height:  phone.w*0.9)
+        }
     }
 }
 
 struct InstructionTextView: View {
-    @State var text: String
+    @Binding var disp: String
     var body: some View {
-        Text(text)
+        Group {
+            if disp == "select" {
+                Text("1セットあたりの回数と、行うセット数を選んでください。\nSTARTを押し、スマホを持ち指示を待ちましょう。")
+            } else if disp == "settingA"{
+                Text("スマホを画面を下に向けて持ち、足を肩幅に開いて腕を真っ直ぐに伸ばしましょう！")
+            } else if disp == "up"{
+                Text("腕を曲げぬよう、ゆっくりと腰を上げ、足を伸ばしましょう！")
+            } else if disp == "settingB" {
+                Text("そのままの体制で腰を落としましょう！")
+            } else if disp == "down"{
+                Text("そのままの体制で腰を落としましょう！")
+            } else if disp == "finish" {
+                Text("お疲れさまでした！")
+            }
+        }.font(.custom("Hiragino Mincho ProN", size: 15))
     }
 }
 
-struct Reserve_SquatView: View {
-    var body: some View {
-        VStack {
-            Image("squat_stand")
-            InstructionTextView(text: InstructionTexts.squat_stand)
-        }
-    }
-}
-
-struct Stand_SquatView: View {
-    var body: some View {
-        VStack {
-            Image("squat_stand")
-            InstructionTextView(text: InstructionTexts.squat_stand)
-        }
-    }
-}
-
-struct Up_SquatView: View {
-    var body: some View {
-        Image("squat_stand")
-        InstructionTextView(text: InstructionTexts.squat_up)
-    }
-}
-
-struct Down_SquatView: View {
-    var body: some View {
-        Image("squat_sit")
-        InstructionTextView(text: InstructionTexts.squat_down)
-    }
-}
-
-struct Finish_SquatView: View {
-    var body: some View {
-        Image("squat_stand")
-        InstructionTextView(text: InstructionTexts.squat_finish)
-    }
-}
-
-struct InstructionTexts {
-    static let squat_reserve = "1セットあたりの回数と、行うセット数を選んでください。"
-    static let squat_stand = "スマホを画面を下に向けて持ち、足を肩幅に開いて腕を真っ直ぐに伸ばしましょう！"
-    static let squat_up = "腕を曲げぬよう、ゆっくりと腰を上げ、足を伸ばしましょう！"
-    static let squat_down = "腕を曲げぬよう、ゆっくりと腰を落としましょう！"
-    static let squat_finish = "お疲れさまでした！"
-}
 
 struct SquatView_Previews: PreviewProvider {
     static var previews: some View {
