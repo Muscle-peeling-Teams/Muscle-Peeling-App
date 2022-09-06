@@ -21,7 +21,8 @@ final class MotionManager: ObservableObject{
     var backColor = Color.white
     
     // 音声
-    private var speechSynthesizer: AVSpeechSynthesizer!
+    private var speechSynthesizer = AVSpeechSynthesizer()
+
     
     // トレーニングを行えているか
     @Published var trainingSucess = false
@@ -33,6 +34,9 @@ final class MotionManager: ObservableObject{
     var y = 0.00
     var z = 0.00
     
+    var setCount = 1
+    var setMaxCount = 3
+    
     // トレーニング時のボタンを透明にする
     @Published var buttonOpacity = true
     
@@ -42,6 +46,7 @@ final class MotionManager: ObservableObject{
     var trainingTimer: Timer?
     var speakTimer: Timer?
     var stopSpeacTimer: Timer?
+    var pauseTimer: Timer?
     
     // シングルトンにするためにinitを潰す
     private init() {}
@@ -63,9 +68,6 @@ final class MotionManager: ObservableObject{
                     self.y = validData.gravity.y
                     self.z = validData.gravity.z
                 }
-                print("x: \(self.x)")
-                print("y: \(self.y)")
-                print("z: \(self.z)")
             }
         }
     }
@@ -73,8 +75,11 @@ final class MotionManager: ObservableObject{
     // カウントダウン
     func startTimer() {
         self.countDown = 5
+        self.speeche(text: String(self.countDown))
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            
             self.countDown -= 1
+            self.speeche(text: String(self.countDown))
             print("\(self.countDown)")
             if self.countDown <= 0 {
                 self.timer?.invalidate()
@@ -97,7 +102,7 @@ final class MotionManager: ObservableObject{
     // トレーニング（制限時間式）
     func trainingTime() {
         
-        var plankTime = 60.0
+        var plankTime = 5.0
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             self.systemImage = self.trainingSucess ? "circle":"xmark"
             self.backColor = self.trainingSucess ? Color.white : Color.red
@@ -108,16 +113,43 @@ final class MotionManager: ObservableObject{
                 self.trainingSucess = false
             }
             plankTime -= 0.1
+            print("\(plankTime)")
+            
+            if plankTime <= 0.0 {
+                self.setCount += 1
+                if (self.setCount < self.setMaxCount) {
+                    self.pauseTraining()
+                } else {
+                    self.stopTraining()
+                }
+            }
         }
         
-        if plankTime <= 0.0 {
-            self.stopTraining()
+    }
+    
+    func pauseTraining() {
+        self.motion.stopDeviceMotionUpdates()
+        self.trainingTimer?.invalidate()
+        self.speakTimer?.invalidate()
+        self.stopSpeacTimer?.invalidate()
+        self.speeche(text: "終了")
+        var pause = 10
+        pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            pause -= 1
+            if pause <= 5 {
+                self.speeche(text: String(pause))
+                if pause <= 0 {
+                    self.pauseTimer?.invalidate()
+                    self.plank()
+                }
+            }
         }
     }
     
     // トレーニング終了
     func stopTraining() {
         // 終了
+        
         self.motion.stopDeviceMotionUpdates()
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
@@ -163,7 +195,6 @@ final class MotionManager: ObservableObject{
     // 自動音声機能
     func speeche(text: String) {
         // AVSpeechSynthesizerのインスタンス作成
-        speechSynthesizer = AVSpeechSynthesizer()
         // 読み上げる、文字、言語などの設定
         let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
         utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
