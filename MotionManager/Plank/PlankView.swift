@@ -9,7 +9,6 @@ import SwiftUI
 
 struct PlankView: View {
     @ObservedObject var plankViewManager : PlankViewManager
-    @Binding var isChanged : Bool
     var body: some View {
         ZStack {
             plankViewManager.backColor
@@ -28,11 +27,6 @@ struct PlankView: View {
                     Button("START"){
                         plankViewManager.trainingSucess = true
                         plankViewManager.startTimer()
-                    }
-                    .font(.largeTitle)
-                    .opacity(plankViewManager.buttonOpacity ? 1.0 : 0.0)
-                    Button("腹筋"){
-                        isChanged = true
                     }
                     .font(.largeTitle)
                     .opacity(plankViewManager.buttonOpacity ? 1.0 : 0.0)
