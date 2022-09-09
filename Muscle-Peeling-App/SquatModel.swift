@@ -21,13 +21,21 @@ class SquatModel: ObservableObject {
     @Published var standValue = 0.0
     @Published var loweredValue = 0.0
     
+    func aaaa() {
+        nowValue = motionManager.x
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.aaaa()
+        }
+    }
+    
     // 下がり幅の登録
     // 立たせる -> 腰を落とす -> 戻す
     func valueSettingA() {
+        aaaa()
         motionManager.startQueuedUpdates()
         count = (remainingSet: 1, remainingCount: 0)
         // ガイド(肩幅立ち)
-        motionManager.speeche(text: "足を肩幅に開き、スマホの画面を下向きに、持た状態で腕を真っ直ぐ前に出しましょう。")
+        motionManager.speeche(text: "足を肩幅に開き、腕を真っ直ぐ前に出しましょう。")
         
         // 5秒カウント
         timer(time: 15)
@@ -49,10 +57,7 @@ class SquatModel: ObservableObject {
         DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
             self.loweredValue = self.motionManager.x
             //姿勢を戻す
-            self.motionManager.speeche(text: "こしをあげてください")
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 20.0) {
-            self.sitDown()
+            self.standUp()
         }
     }
     
@@ -76,16 +81,16 @@ class SquatModel: ObservableObject {
     
     // クリアチェッカー
     func checker(process: String) {
-        nowValue = motionManager.y
+        nowValue = motionManager.x
         var check = false
         // standValue付近でクリア
         // loweredValue付近でクリア
         if process == "up" {
-            if motionManager.y > standValue {
+            if fabs(motionManager.x) < fabs(standValue)-0.01 {
                 check = true
             }
         } else if process == "down" {
-            if motionManager.y < loweredValue {
+            if fabs(motionManager.x) > fabs(loweredValue) {
                 check = true
             }
         }

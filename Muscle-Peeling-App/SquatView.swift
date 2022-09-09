@@ -93,11 +93,11 @@ struct SquatView: View {
             }
         }
             
-            VStack {
-                Text("STAND: \(model.standValue)")
-                Text("SIT: \(model.loweredValue)")
-                Text("NOW: \(model.nowValue)")
-            }
+//            VStack {
+//                Text("STAND: \(model.standValue)")
+//                Text("SIT: \(model.loweredValue)")
+//                Text("NOW: \(model.nowValue)")
+//            }
             
         }
     }
@@ -110,14 +110,16 @@ struct selectSetView: View {
             SquatImage(disp: $model.nowDisp)
             HStack {
                 Button(action: {
-                    model.setCount -= 1
+                    if model.setCount > 2 {
+                        model.setCount -= 1
+                    }
                 }){
                     Text("-")
                 }
                 Text("セット数: \(model.setCount)")
                     .font(.custom("Hiragino Mincho ProN", size: 25))
                 Button(action: {
-                    model.setCount -= 1
+                    model.setCount += 1
                 }){
                     Text("+")
                 }
@@ -125,16 +127,22 @@ struct selectSetView: View {
             
             HStack {
                 Button(action: {
-                    model.numInSet -= 1
+                    if model.numInSet > 2 {
+                        model.numInSet -= 1
+                    }
                 }){
                     Text("-")
+                        .fontWeight(.heavy)
+                        .font(.title)
                 }
-                Text("１セット: \(model.setCount)回")
+                Text("１セット: \(model.numInSet)回")
                     .font(.custom("Hiragino Mincho ProN", size: 25))
                 Button(action: {
-                    model.numInSet -= 1
+                    model.numInSet += 1
                 }){
                     Text("+")
+                        .fontWeight(.heavy)
+                        .font(.title)
                 }
             }
             
