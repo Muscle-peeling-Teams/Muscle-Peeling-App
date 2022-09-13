@@ -80,17 +80,17 @@ struct SquatView: View {
                     }
                 }
             }
-            HStack {
-                ForEach(viewList, id: \.self){ name in
-                    Button(action: {
-                        model.nowDisp = name
-                    }){
-                        Text("\(name)")
-                            .padding(3)
-                            .border(Color.black)
-                    }
-                }
-            }
+//            HStack {
+//                ForEach(viewList, id: \.self){ name in
+//                    Button(action: {
+//                        model.nowDisp = name
+//                    }){
+//                        Text("\(name)")
+//                            .padding(3)
+//                            .border(Color.black)
+//                    }
+//                }
+//            }
         }
             
 //            VStack {
@@ -187,7 +187,7 @@ struct SquatImage: View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
                 .frame(width: phone.w*0.7 + 5, height:  phone.w*0.9 + 5)
-                .foregroundColor(Color.gray)
+                .foregroundColor(Color.white)
                 .shadow(color: Color.gray, radius: 10, x: 0, y: 0)
             Group {
                 if disp == "select" {
@@ -202,7 +202,7 @@ struct SquatImage: View {
                     // お疲れ様
                     Image("squat_sit").resizable()
                 }
-            }.frame(width: phone.w*0.7, height:  phone.w*0.9)
+            }.frame(width: phone.w*0.6, height:  phone.w*0.9)
         }
     }
 }
@@ -212,13 +212,13 @@ struct InstructionTextView: View {
     var body: some View {
         Group {
             if disp == "select" {
-                Text("1セットあたりの回数と、行うセット数を選んでください。\nSTARTを押し、スマホを持ち指示を待ちましょう。")
+                Text("1セットあたりの回数と、行うセット数を選んでください。\nスマホを装着してSTARTを押し、指示を待ちましょう。")
             } else if disp == "settingA"{
-                Text("スマホを画面を下に向けて持ち、足を肩幅に開いて腕を真っ直ぐに伸ばしましょう！")
+                Text("足を肩幅に開いて腕を真っ直ぐに伸ばし、キープしてください。")
             } else if disp == "up"{
                 Text("腕を曲げぬよう、ゆっくりと腰を上げ、足を伸ばしましょう！")
             } else if disp == "settingB" {
-                Text("そのままの体制で腰を落としましょう！")
+                Text("そのままの体制で腰を落とし、体制をキープしてください。")
             } else if disp == "down"{
                 Text("そのままの体制で腰を落としましょう！")
             } else if disp == "finish" {

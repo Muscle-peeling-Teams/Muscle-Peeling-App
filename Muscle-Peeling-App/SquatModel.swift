@@ -35,12 +35,12 @@ class SquatModel: ObservableObject {
         motionManager.startQueuedUpdates()
         count = (remainingSet: 1, remainingCount: 0)
         // ガイド(肩幅立ち)
-        motionManager.speeche(text: "足を肩幅に開き、腕を真っ直ぐ前に出しましょう。")
+        motionManager.speeche(text: "足を肩幅に開き、腕を真っ直ぐ前に出し、キープしてください。")
         
         // 5秒カウント
-        timer(time: 15)
+        timer(time: 10)
         // カウント後に値の取得、設定1
-        DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             self.standValue = self.motionManager.x
             self.valueSettingB()
         }
@@ -49,12 +49,12 @@ class SquatModel: ObservableObject {
     
     func valueSettingB() {
         // ガイド(姿勢を落とす)
-        motionManager.speeche(text: "腕を曲げぬよう、ゆっくりと腰を落としましょう。")
+        motionManager.speeche(text: "腕を曲げぬよう、ゆっくりと腰を落とした状態でキープしてください。")
         nowDisp = "settingB"
         // 3秒カウント
-        timer(time: 15)
+        timer(time: 10)
         //　カウント後に値の取得、設定2
-        DispatchQueue.main.asyncAfter(deadline: .now() + 15.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10.0) {
             self.loweredValue = self.motionManager.x
             //姿勢を戻す
             self.standUp()
