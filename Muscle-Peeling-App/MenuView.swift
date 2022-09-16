@@ -14,7 +14,7 @@ struct MenuView: View {
         ZStack{
             ScrollView{
                 HStack(spacing: 30){
-                    VStack(){
+                    VStack(spacing: 30){
                         ForEach(viewModel.leftMenu, id: \.self){ name in
                             VStack(spacing: 0){
                                 
@@ -43,7 +43,7 @@ struct MenuView: View {
                         
                         Button(action: {
                             print("Button")
-                            
+                            viewModel.showingModal.toggle()
                         }) {
                             RoundedRectangle(cornerRadius: 50)
                                 .frame(width: 100, height: 60)
@@ -56,6 +56,9 @@ struct MenuView: View {
                                         .foregroundColor(Color.black)
                                 )
                         }
+                        .fullScreenCover(isPresented: $viewModel.showingModal) {
+                                    SettingView()
+                            }
                         
                         
                         ForEach(viewModel.rightMenu, id: \.self){ name in

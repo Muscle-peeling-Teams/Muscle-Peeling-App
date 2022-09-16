@@ -11,6 +11,7 @@ struct SettingView: View {
     let Menu = ["筋肉","筋肉位置","永井","おいしい","やみー","感謝感謝"]
     var fruits = ["1", "2", "3", "4" ]
     @State private var selectedFruit = 0
+    @Environment(\.dismiss) var dismiss
 
     var body: some View {
         ZStack{
@@ -38,7 +39,7 @@ struct SettingView: View {
                     height: 100)
                     .edgesIgnoringSafeArea(.all)
                 Button(action: {
-                    print("おまえくさい")
+                        dismiss()
                 }){
                     Text("    選択")
                         .foregroundColor(Color.white)
