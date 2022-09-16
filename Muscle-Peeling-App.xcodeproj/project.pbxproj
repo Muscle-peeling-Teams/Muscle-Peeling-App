@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		7F402E0628BD9E9F004BC36E /* PushUpMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F402E0528BD9E9F004BC36E /* PushUpMotionManager.swift */; };
 		7FD530C328C1AAF600535AF3 /* PushUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FD530C228C1AAF600535AF3 /* PushUpView.swift */; };
+		7FF9EE2728D4036E00BBC4BE /* PopupDialogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF9EE2628D4036E00BBC4BE /* PopupDialogView.swift */; };
+		7FF9EE2A28D40C0000BBC4BE /* ReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF9EE2928D40C0000BBC4BE /* ReadyView.swift */; };
+		7FF9EE2C28D411A900BBC4BE /* TraningView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FF9EE2B28D411A900BBC4BE /* TraningView.swift */; };
 		D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */; };
 		D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */; };
 		D0BA2F5328B48F7D00A2EE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */; };
@@ -18,6 +21,9 @@
 /* Begin PBXFileReference section */
 		7F402E0528BD9E9F004BC36E /* PushUpMotionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushUpMotionManager.swift; sourceTree = "<group>"; };
 		7FD530C228C1AAF600535AF3 /* PushUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushUpView.swift; sourceTree = "<group>"; };
+		7FF9EE2628D4036E00BBC4BE /* PopupDialogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupDialogView.swift; sourceTree = "<group>"; };
+		7FF9EE2928D40C0000BBC4BE /* ReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyView.swift; sourceTree = "<group>"; };
+		7FF9EE2B28D411A900BBC4BE /* TraningView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraningView.swift; sourceTree = "<group>"; };
 		D0BA2F4B28B48F7C00A2EE72 /* Muscle-Peeling-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Muscle-Peeling-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muscle_Peeling_App.swift; sourceTree = "<group>"; };
 		D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -45,6 +51,23 @@
 			path = Pushup;
 			sourceTree = "<group>";
 		};
+		7FF9EE2328D402DC00BBC4BE /* PopupView(nofinished) */ = {
+			isa = PBXGroup;
+			children = (
+				7FF9EE2628D4036E00BBC4BE /* PopupDialogView.swift */,
+			);
+			path = "PopupView(nofinished)";
+			sourceTree = "<group>";
+		};
+		7FF9EE2828D40BE000BBC4BE /* ReadyView */ = {
+			isa = PBXGroup;
+			children = (
+				7FF9EE2928D40C0000BBC4BE /* ReadyView.swift */,
+				7FF9EE2B28D411A900BBC4BE /* TraningView.swift */,
+			);
+			path = ReadyView;
+			sourceTree = "<group>";
+		};
 		D0BA2F4228B48F7C00A2EE72 = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +89,8 @@
 			children = (
 				D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */,
 				D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */,
+				7FF9EE2828D40BE000BBC4BE /* ReadyView */,
+				7FF9EE2328D402DC00BBC4BE /* PopupView(nofinished) */,
 				7F402E0428BD9AFD004BC36E /* Pushup */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
 				D0BA2F5428B48F7D00A2EE72 /* Preview Content */,
@@ -151,10 +176,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FF9EE2A28D40C0000BBC4BE /* ReadyView.swift in Sources */,
 				7FD530C328C1AAF600535AF3 /* PushUpView.swift in Sources */,
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
 				7F402E0628BD9E9F004BC36E /* PushUpMotionManager.swift in Sources */,
+				7FF9EE2728D4036E00BBC4BE /* PopupDialogView.swift in Sources */,
 				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */,
+				7FF9EE2C28D411A900BBC4BE /* TraningView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

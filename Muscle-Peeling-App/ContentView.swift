@@ -11,6 +11,7 @@ struct ContentView: View {
     @StateObject var motionManager : PushUpMotionManager = .shared
     
     var body: some View {
-        PushUpView(motionManager: motionManager)
+        //PushUpView(motionManager: motionManager)
+        ReadyView()
     }
 }
