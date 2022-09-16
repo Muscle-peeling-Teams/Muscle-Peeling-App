@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //
 //  readyView.swift
 //  Muscle-Peeling-App
@@ -5,6 +6,8 @@
 //  Created by cmStudent on 2022/09/16.
 //
 
+=======
+>>>>>>> af2191ff5c85bc9519414951fb78cc6e36a47c6b
 import SwiftUI
 
 struct ReadyView: View {
@@ -13,6 +16,10 @@ struct ReadyView: View {
     //設定時のセット数
     @State var setNum = 3
     @State var navigated = false
+<<<<<<< HEAD
+=======
+    var image : [String]
+>>>>>>> af2191ff5c85bc9519414951fb78cc6e36a47c6b
     
     var body: some View {
         
@@ -93,6 +100,10 @@ struct ReadyView: View {
 
 struct ReadyView_Previews: PreviewProvider {
     static var previews: some View {
+<<<<<<< HEAD
         ReadyView()
+=======
+        ReadyView(image: ["プランク１", "プランク２"])
+>>>>>>> af2191ff5c85bc9519414951fb78cc6e36a47c6b
     }
 }
