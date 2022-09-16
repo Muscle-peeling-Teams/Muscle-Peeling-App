@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F05364528D45159007DC2AE /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364328D45159007DC2AE /* BackPlankView.swift */; };
-		7F05364628D45159007DC2AE /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364428D45159007DC2AE /* BackPlankManager.swift */; };
-		7F05364A28D45174007DC2AE /* AbsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364828D45174007DC2AE /* AbsView.swift */; };
-		7F05364B28D45174007DC2AE /* AbsViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364928D45174007DC2AE /* AbsViewManager.swift */; };
 		7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */ = {isa = PBXBuildFile; fileRef = 7F7E030D28D447C5008CE998 /*  bulgarian squat */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
@@ -19,17 +15,17 @@
 		D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */; };
 		D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2D228D1EECC00250045 /* SettingViewModel.swift */; };
 		D096C56028D4434B00D6747C /* ReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C55F28D4434B00D6747C /* ReadyView.swift */; };
-		D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift */; };
+		D096C58A28D4AC3300D6747C /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58828D4AC3300D6747C /* BackPlankManager.swift */; };
+		D096C58B28D4AC3300D6747C /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58928D4AC3300D6747C /* BackPlankView.swift */; };
+		D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */; };
+		D096C59028D4AC5B00D6747C /* PushUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58E28D4AC5B00D6747C /* PushUpView.swift */; };
+		D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */; };
 		D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */; };
 		D0BA2F5328B48F7D00A2EE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */; };
 		D0BA2F5628B48F7D00A2EE72 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BA2F5528B48F7D00A2EE72 /* Preview Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F05364328D45159007DC2AE /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
-		7F05364428D45159007DC2AE /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
-		7F05364828D45174007DC2AE /* AbsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsView.swift; sourceTree = "<group>"; };
-		7F05364928D45174007DC2AE /* AbsViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsViewManager.swift; sourceTree = "<group>"; };
 		7F7E030D28D447C5008CE998 /*  bulgarian squat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = " bulgarian squat"; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
@@ -38,6 +34,10 @@
 		D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		D08AF2D228D1EECC00250045 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D096C55F28D4434B00D6747C /* ReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyView.swift; sourceTree = "<group>"; };
+		D096C58828D4AC3300D6747C /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackPlankManager.swift; path = "Muscle-Peeling-App/ bulgarian squat/BackPlankManager.swift"; sourceTree = SOURCE_ROOT; };
+		D096C58928D4AC3300D6747C /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackPlankView.swift; path = "Muscle-Peeling-App/ bulgarian squat/BackPlankView.swift"; sourceTree = SOURCE_ROOT; };
+		D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpMotionManager.swift; sourceTree = "<group>"; };
+		D096C58E28D4AC5B00D6747C /* PushUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpView.swift; sourceTree = "<group>"; };
 		D0BA2F4B28B48F7C00A2EE72 /* Muscle-Peeling-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Muscle-Peeling-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muscle_Peeling_App.swift; sourceTree = "<group>"; };
 		D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,55 +56,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F402E0428BD9AFD004BC36E /* Pushup */ = {
-			isa = PBXGroup;
-			children = (
-				7F402E0528BD9E9F004BC36E /* PushUpMotionManager.swift */,
-				7FD530C228C1AAF600535AF3 /* PushUpView.swift */,
-			);
-			path = Pushup;
-			sourceTree = "<group>";
-		};
-		7FF9EE2328D402DC00BBC4BE /* PopupView(nofinished) */ = {
-			isa = PBXGroup;
-			children = (
-				7FF9EE2628D4036E00BBC4BE /* PopupDialogView.swift */,
-			);
-			path = "PopupView(nofinished)";
-			sourceTree = "<group>";
-		};
-		7FF9EE2828D40BE000BBC4BE /* ReadyView */ = {
-			isa = PBXGroup;
-			children = (
-				7FF9EE2928D40C0000BBC4BE /* ReadyView.swift */,
-				7FF9EE2B28D411A900BBC4BE /* TraningView.swift */,
-			);
-			path = ReadyView;
-			sourceTree = "<group>";
-		};
-/* End PBXFrameworksBuildPhase section */
-
-/* Begin PBXGroup section */
-		7F05364228D45159007DC2AE /* BackPlank */ = {
-			isa = PBXGroup;
-			children = (
-				7F05364328D45159007DC2AE /* BackPlankView.swift */,
-				7F05364428D45159007DC2AE /* BackPlankManager.swift */,
-			);
-			name = BackPlank;
-			path = " bulgarian squat/abs/BackPlank";
-			sourceTree = "<group>";
-		};
-		7F05364728D45174007DC2AE /* abs */ = {
-			isa = PBXGroup;
-			children = (
-				7F05364828D45174007DC2AE /* AbsView.swift */,
-				7F05364928D45174007DC2AE /* AbsViewManager.swift */,
-			);
-			name = abs;
-			path = ../../../abs;
-			sourceTree = "<group>";
-		};
 		D08AF2C728D1ECD200250045 /* Plank */ = {
 			isa = PBXGroup;
 			children = (
@@ -112,6 +63,31 @@
 				D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */,
 			);
 			path = Plank;
+			sourceTree = "<group>";
+		};
+		D096C58128D4AB4D00D6747C /* abs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = abs;
+			sourceTree = "<group>";
+		};
+		D096C58728D4AC2100D6747C /* BackPlank */ = {
+			isa = PBXGroup;
+			children = (
+				D096C58828D4AC3300D6747C /* BackPlankManager.swift */,
+				D096C58928D4AC3300D6747C /* BackPlankView.swift */,
+			);
+			path = BackPlank;
+			sourceTree = "<group>";
+		};
+		D096C58C28D4AC5B00D6747C /* Pushup */ = {
+			isa = PBXGroup;
+			children = (
+				D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */,
+				D096C58E28D4AC5B00D6747C /* PushUpView.swift */,
+			);
+			path = Pushup;
 			sourceTree = "<group>";
 		};
 		D0BA2F4228B48F7C00A2EE72 = {
@@ -140,8 +116,9 @@
 				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
 				D096C55F28D4434B00D6747C /* ReadyView.swift */,
 				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
-				7F05364728D45174007DC2AE /* abs */,
-				7F05364228D45159007DC2AE /* BackPlank */,
+				D096C58C28D4AC5B00D6747C /* Pushup */,
+				D096C58728D4AC2100D6747C /* BackPlank */,
+				D096C58128D4AB4D00D6747C /* abs */,
 				7F7E030D28D447C5008CE998 /*  bulgarian squat */,
 				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
@@ -230,32 +207,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				D096C56028D4434B00D6747C /* ReadyView.swift in Sources */,
-				7F05364A28D45174007DC2AE /* AbsView.swift in Sources */,
+				D096C59028D4AC5B00D6747C /* PushUpView.swift in Sources */,
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
 				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
-				7F05364628D45159007DC2AE /* BackPlankManager.swift in Sources */,
+				D096C58A28D4AC3300D6747C /* BackPlankManager.swift in Sources */,
+				D096C58B28D4AC3300D6747C /* BackPlankView.swift in Sources */,
 				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
 				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
-				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift in Sources */,
-				7F05364528D45159007DC2AE /* BackPlankView.swift in Sources */,
+				D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */,
+				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */,
 				D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */,
 				D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */,
 				D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */,
-				7F05364B28D45174007DC2AE /* AbsViewManager.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0BA2F5728B48F7D00A2EE72 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D0BA2F6128B48F7D00A2EE72 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +347,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
-				DEVELOPMENT_TEAM = MW8JTL62A9;
+				DEVELOPMENT_TEAM = UK3QAQ2MSD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -398,7 +361,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -414,7 +377,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
-				DEVELOPMENT_TEAM = MW8JTL62A9;
+				DEVELOPMENT_TEAM = UK3QAQ2MSD;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -428,7 +391,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp;
+				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

@@ -48,7 +48,7 @@ struct MenuView: View {
                         
                         Button(action: {
                             print("Button")
-                            viewModel.showingModal.toggle()
+                            viewModel.SettingModal.toggle()
                         }) {
                             RoundedRectangle(cornerRadius: 50)
                                 .frame(width: 100, height: 60)
@@ -61,8 +61,8 @@ struct MenuView: View {
                                         .foregroundColor(Color.black)
                                 )
                         }
-                        .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    SettingView()
+                        .fullScreenCover(isPresented: $viewModel.SettingModal) {
+                                SettingView()
                             }
                         
                         ForEach(0..<viewModel.rightMenu.count){ number in

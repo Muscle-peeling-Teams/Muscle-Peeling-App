@@ -10,130 +10,20 @@ import SwiftUI
 struct SettingView: View {
     let Menu = ["クランク","バッククランク"]
     let menyu = ["ブルガリアンスクワット","スクワット","腹筋","腕立て"]
-    var fruits = ["1","2","3","4"]
-    @State private var selectedFruit = 0
+    var fruits = ["1","2","3","4","5"]
+    let w = UIScreen.main.bounds.width
+    
     @ObservedObject var viewModel = SettingViewModel()
-
+    @ObservedObject var plankViewModel: PlankViewManager = .shared
+    @ObservedObject var plankViewModel: AbsV = .shared
+    
     @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        ZStack{
-            ScrollView{
-                ForEach(Menu, id: \.self){ name in
-                    VStack(spacing: 0){
-                        
-                        
-                        
-                        Text("\(name)")
-                            .frame(width: 300, height: 30, alignment: .leading)
-                        
-                        aaa()
-                        
-                        
-                        
-                        
-                    }.frame(width: UIScreen.main.bounds.width*1.1)
-                    
-                }
-                ForEach(menyu, id: \.self){ name in
-                    VStack(spacing: 0){
-                        
-                        
-                        
-                        Text("\(name)")
-                            .frame(width: 300, height: 30, alignment: .leading)
-                        
-                        bb(num: $0)
-                        
-                        
-                        
-                        
-                    }.frame(width: UIScreen.main.bounds.width*1.1)
-                    
-                }
-            }
-            ZStack{
-                Rectangle()
-                    .frame(width: UIScreen.main.bounds.width*1.1,
-                           height: 100)
-                    .edgesIgnoringSafeArea(.all)
-                Button(action: {
-                    print("\(viewModel.selectSets)")
-                    dismiss()
-                }){
-                    Text("    選択")
-                        .foregroundColor(Color.white)
-                        .font(.custom("HiraginoSans-W3", size: 30))
-                }
-            }.position(x: UIScreen.main.bounds.width * 0.5,
-                       y: UIScreen.main.bounds.height * 0.9)
-            
-        }
-    }
-}
-
-struct settei_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
-    }
-}
-
-struct bb: View {
-    
-    @ObservedObject var viewModel = SettingViewModel()
-    
-    let w = UIScreen.main.bounds.width
-    var fruits = ["1","2","3","4","5"]
-    @State private var selectedFruit = 0
-    @State var abc: [String] = ["1","2","3","4","5","6","7","8","9","10",
-                                "11","12","13","14","15","16","17","18","19","20",
-                                "21","22","23","24","25","26","27","28","29","30",
-                                "31","32","33","34","35","36","37","38","39","40",
-                                "41","42","43","44","45","46","47","48","49","50"]
-    @State private var bbb = 0
-    var num: Int
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.white)
-                .shadow(radius: 10)
-            HStack {
-                Picker(selection: $viewModel.selectSets[],
-                       label: Text("")) {
-                    ForEach(0..<5) {
-                        Text(self.fruits[$0])
-                            .font(.largeTitle)
-                        
-                    }
-                }
-                Text("セット")
-                    .font(.largeTitle)
-                
-                Picker(selection: $bbb,
-                       label: Text("")) {
-                    
-                    ForEach(0..<50) {
-                        Text(self.abc[$0])
-                            .font(.largeTitle)
-                        
-                    }
-                }
-                Text("回")
-                    .font(.largeTitle)
-                
-                
-                
-            }
-        }.frame(width: w*0.8, height: w*0.3)
-    }
-}
-
-struct aaa: View {
-    
-    let w = UIScreen.main.bounds.width
-    var fruits = ["1","2","3","4","5"]
-    @State private var selectedFruit = 0
-    @State var abc = ["1","2","3","4","5","6","7","8","9","10",
+    @State var plays: [String] = ["1","2","3","4","5","6","7","8","9","10",
+                                  "11","12","13","14","15","16","17","18","19","20",
+                                  "21","22","23","24","25","26","27","28","29","30",
+                                  "31","32","33","34","35","36","37","38","39","40",
+                                  "41","42","43","44","45","46","47","48","49","50"]
+    @State var times = ["1","2","3","4","5","6","7","8","9","10",
                       "11","12","13","14","15","16","17","18","19","20",
                       "21","22","23","24","25","26","27","28","29","30",
                       "31","32","33","34","35","36","37","38","39","40",
@@ -151,43 +41,303 @@ struct aaa: View {
                       "151","152","153","154","155","156","157","158","159","160",
                       "161","162","163","164","165","166","167","168","169","170",
                       "171","172","173","174","175","176","177","178","179","180"]
-    @State private var bbb = 0
-    @ObservedObject var viewModel = SettingViewModel()
-
+    
     var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 5)
-                .foregroundColor(Color.white)
-                .shadow(radius: 10)
-            HStack {
-                Picker(selection: $selectedFruit,
-                       label: Text("")) {
-                    ForEach(0..<5) {
-                        Text(self.fruits[$0])
-                            .font(.largeTitle)
-                        
-                    }
+        ZStack{
+            ScrollView{
+                VStack(spacing: 0){
+                    
+                    
+                    
+                    Text("プランク")
+                        .frame(width: 300, height: 30, alignment: .leading)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(Color.white)
+                            .shadow(radius: 10)
+                        HStack {
+                            Picker(selection: $viewModel.selectedSet[1],
+                                   label: Text("")) {
+                                ForEach(0..<5) {
+                                    Text(self.fruits[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                                
+                            Text("セット")
+                                .font(.largeTitle)
+                            
+                            Picker(selection: $viewModel.selectedPlay[1],
+                                   label: Text("")) {
+                                ForEach(0..<180) {
+                                    Text(self.times[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("秒")
+                                .font(.largeTitle)
+                            
+                            
+                            
+                        }
+                    }.frame(width: w*0.8, height: w*0.3)
+                        .onChange(of: viewModel.selectedSet[0]) { newValue in
+                            viewModel.selectedSet[0] = newValue
+                        }
+                        .onChange(of: viewModel.selectedPlay[0]) {
+                            newValue in
+                            viewModel.selectedPlay[0] = newValue
+                        }
+                    
+                    
+                    
+                    
+                }.frame(width: UIScreen.main.bounds.width*1.1)
+                
+                VStack(spacing: 0){
+                    
+                    
+                    
+                    Text("バックプランク")
+                        .frame(width: 300, height: 30, alignment: .leading)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(Color.white)
+                            .shadow(radius: 10)
+                        HStack {
+                            Picker(selection: $viewModel.selectedSet[1],
+                                   label: Text("")) {
+                                ForEach(0..<5) {
+                                    Text(self.fruits[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                                
+                            Text("セット")
+                                .font(.largeTitle)
+                            
+                            Picker(selection: $viewModel.selectedPlay[1],
+                                   label: Text("")) {
+                                ForEach(0..<180) {
+                                    Text(self.times[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("秒")
+                                .font(.largeTitle)
+                            
+                            
+                            
+                        }
+                    }.frame(width: w*0.8, height: w*0.3)
+                        .onChange(of: viewModel.selectedSet[1]) { newValue in
+                            viewModel.selectedSet[1] = newValue
+                        }
+                        .onChange(of: viewModel.selectedPlay[1]) {
+                            newValue in
+                            viewModel.selectedPlay[1] = newValue
+                        }
+                    
+                    
+                }.frame(width: UIScreen.main.bounds.width*1.1)
+                
+                VStack(spacing: 0){
+                    
+                    
+                    
+                    Text("ブルガリアンスクワット")
+                        .frame(width: 300, height: 30, alignment: .leading)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(Color.white)
+                            .shadow(radius: 10)
+                        HStack {
+                            Picker(selection: $viewModel.selectedSet[2],
+                                   label: Text("")) {
+                                ForEach(0..<5) {
+                                    Text(self.fruits[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("セット")
+                                .font(.largeTitle)
+                            
+                            Picker(selection: $viewModel.selectedPlay[2],
+                                   label: Text("")) {
+                                
+                                ForEach(0..<50) {
+                                    Text(self.plays[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("回")
+                                .font(.largeTitle)
+                            
+                            
+                            
+                        }
+                    }.frame(width: w*0.8, height: w*0.3)
+                        .onChange(of: viewModel.selectedSet[2]) { newValue in
+                            viewModel.selectedSet[2] = newValue
+                        }
+                        .onChange(of: viewModel.selectedPlay[2]) {
+                            newValue in
+                            viewModel.selectedPlay[2] = newValue
+                        }
+                    
+                    
+                    
+                    
+                }.frame(width: UIScreen.main.bounds.width*1.1)
+                
+                
+                
+                VStack(spacing: 0){
+                    
+                    
+                    
+                    Text("腹筋")
+                        .frame(width: 300, height: 30, alignment: .leading)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(Color.white)
+                            .shadow(radius: 10)
+                        HStack {
+                            Picker(selection: $viewModel.selectedSet[4],
+                                   label: Text("")) {
+                                ForEach(0..<5) {
+                                    Text(self.fruits[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("セット")
+                                .font(.largeTitle)
+                            
+                            Picker(selection: $viewModel.selectedPlay[4],
+                                   label: Text("")) {
+                                
+                                ForEach(0..<50) {
+                                    Text(self.plays[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("回")
+                                .font(.largeTitle)
+                            
+                            
+                            
+                        }
+                    }.frame(width: w*0.8, height: w*0.3)
+                        .onChange(of: viewModel.selectedSet[4]) { newValue in
+                            viewModel.selectedSet[4] = newValue
+                        }
+                        .onChange(of: viewModel.selectedPlay[4]) {
+                            newValue in
+                            viewModel.selectedPlay[4] = newValue
+                        }
+                    
+                    
+                    
+                    
+                }.frame(width: UIScreen.main.bounds.width*1.1)
+                
+                VStack(spacing: 0){
+                    
+                    
+                    
+                    Text("腕立て")
+                        .frame(width: 300, height: 30, alignment: .leading)
+                    
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 5)
+                            .foregroundColor(Color.white)
+                            .shadow(radius: 10)
+                        HStack {
+                            Picker(selection: $viewModel.selectedSet[5],
+                                   label: Text("")) {
+                                ForEach(0..<5) {
+                                    Text(self.fruits[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("セット")
+                                .font(.largeTitle)
+                            
+                            Picker(selection: $viewModel.selectedPlay[5],
+                                   label: Text("")) {
+                                
+                                ForEach(0..<50) {
+                                    Text(self.plays[$0])
+                                        .font(.largeTitle)
+                                    
+                                }
+                            }
+                            Text("回")
+                                .font(.largeTitle)
+                            
+                            
+                            
+                        }
+                    }.frame(width: w*0.8, height: w*0.3)
+                        .onChange(of: viewModel.selectedSet[5]) { newValue in
+                            viewModel.selectedSet[5] = newValue
+                        }
+                        .onChange(of: viewModel.selectedPlay[5]) {
+                            newValue in
+                            viewModel.selectedPlay[5] = newValue
+                        }
+                    
+                    
+                    
+                    
+                }.frame(width: UIScreen.main.bounds.width*1.1)
+                
+                VStack {
+                    // 下の選択と重ならないために
                 }
-                Text("セット")
-                    .font(.largeTitle)
-                
-                Picker(selection: $bbb,
-                       label: Text("")) {
-                    ForEach(0..<180) {
-                        Text(self.abc[$0])
-                            .font(.largeTitle)
-                        
-                    }
-                }
-                Text("秒")
-                    .font(.largeTitle)
-                
-                
+                .frame(width: w*0.8, height: w*0.3)
                 
             }
-        }.frame(width: w*0.8, height: w*0.3)
-        
+            
+            ZStack{
+                Rectangle()
+                    .foregroundColor(.black)
+                    .frame(width: UIScreen.main.bounds.width*1.1,
+                           height: 100)
+                    .edgesIgnoringSafeArea(.all)
+                Button(action: {
+                    dismiss()
+                }){
+                    Text("    選択")
+                        .foregroundColor(Color.white)
+                        .font(.custom("HiraginoSans-W3", size: 30))
+                }
+            }.position(x: UIScreen.main.bounds.width * 0.5,
+                       y: UIScreen.main.bounds.height * 0.9)
+            
+            
+        }
     }
 }
+
+struct settei_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingView()
+    }
+}
+
 
 

@@ -14,7 +14,7 @@ struct ReadyView: View {
                    "ブルガリアンスクワット：\n1.後ろの足をベンチの上に乗せる。\n2.上体をできるだけ垂直に保ったまま、ゆっくりとしゃがんでいく。\n3.終わったら両足を入れ替え、同じ回数を繰り返す。",
                    
                    "腕立て：\n1.肘を曲げ、胸がつくまで体を下ろします。"]
-    @State var result: String? = ""
+    @State var result: String = ""
 
     var body: some View {
         
@@ -37,7 +37,7 @@ struct ReadyView: View {
                                 .tabItem {
                                     Text("・")
                                 }
-                            Text("\(result!)")
+                            Text("\(result)")
                                 .tabItem {
                                     Text("・")
                                 }
@@ -92,7 +92,7 @@ struct ReadyView: View {
         Spacer()
         
             .onAppear {
-                result = example.first(where: { $0.contains("\(image)") })
+                result = example.first(where: { $0.contains("\(image)") }) ?? "プランク"
             }
     }
     
