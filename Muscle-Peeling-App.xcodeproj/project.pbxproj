@@ -7,11 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F05364528D45159007DC2AE /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364328D45159007DC2AE /* BackPlankView.swift */; };
-		7F05364628D45159007DC2AE /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364428D45159007DC2AE /* BackPlankManager.swift */; };
 		7F05364A28D45174007DC2AE /* AbsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364828D45174007DC2AE /* AbsView.swift */; };
 		7F05364B28D45174007DC2AE /* AbsViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364928D45174007DC2AE /* AbsViewManager.swift */; };
 		7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */ = {isa = PBXBuildFile; fileRef = 7F7E030D28D447C5008CE998 /*  bulgarian squat */; };
+		7FA69C8628D46B4F00375A5F /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA69C8428D46B4F00375A5F /* BackPlankView.swift */; };
+		7FA69C8728D46B4F00375A5F /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA69C8528D46B4F00375A5F /* BackPlankManager.swift */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
 		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
@@ -43,11 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7F05364328D45159007DC2AE /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
-		7F05364428D45159007DC2AE /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
 		7F05364828D45174007DC2AE /* AbsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsView.swift; sourceTree = "<group>"; };
 		7F05364928D45174007DC2AE /* AbsViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsViewManager.swift; sourceTree = "<group>"; };
 		7F7E030D28D447C5008CE998 /*  bulgarian squat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = " bulgarian squat"; sourceTree = "<group>"; };
+		7FA69C8428D46B4F00375A5F /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
+		7FA69C8528D46B4F00375A5F /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
 		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -89,16 +89,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7F05364228D45159007DC2AE /* BackPlank */ = {
-			isa = PBXGroup;
-			children = (
-				7F05364328D45159007DC2AE /* BackPlankView.swift */,
-				7F05364428D45159007DC2AE /* BackPlankManager.swift */,
-			);
-			name = BackPlank;
-			path = " bulgarian squat/abs/BackPlank";
-			sourceTree = "<group>";
-		};
 		7F05364728D45174007DC2AE /* abs */ = {
 			isa = PBXGroup;
 			children = (
@@ -107,6 +97,16 @@
 			);
 			name = abs;
 			path = ../../../abs;
+			sourceTree = "<group>";
+		};
+		7FA69C8328D46B4F00375A5F /* BackPlank */ = {
+			isa = PBXGroup;
+			children = (
+				7FA69C8428D46B4F00375A5F /* BackPlankView.swift */,
+				7FA69C8528D46B4F00375A5F /* BackPlankManager.swift */,
+			);
+			name = BackPlank;
+			path = ../../../../Downloads/BackPlank;
 			sourceTree = "<group>";
 		};
 		D08AF2C728D1ECD200250045 /* Plank */ = {
@@ -146,8 +146,8 @@
 				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
 				D096C55F28D4434B00D6747C /* ReadyView.swift */,
 				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
+				7FA69C8328D46B4F00375A5F /* BackPlank */,
 				7F05364728D45174007DC2AE /* abs */,
-				7F05364228D45159007DC2AE /* BackPlank */,
 				7F7E030D28D447C5008CE998 /*  bulgarian squat */,
 				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
@@ -295,16 +295,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA69C8628D46B4F00375A5F /* BackPlankView.swift in Sources */,
 				D096C56028D4434B00D6747C /* ReadyView.swift in Sources */,
 				7F05364A28D45174007DC2AE /* AbsView.swift in Sources */,
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
 				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
-				7F05364628D45159007DC2AE /* BackPlankManager.swift in Sources */,
 				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
 				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
 				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift in Sources */,
-				7F05364528D45159007DC2AE /* BackPlankView.swift in Sources */,
 				D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */,
+				7FA69C8728D46B4F00375A5F /* BackPlankManager.swift in Sources */,
 				D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */,
 				D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */,
 				7F05364B28D45174007DC2AE /* AbsViewManager.swift in Sources */,
