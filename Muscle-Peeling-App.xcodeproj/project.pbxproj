@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+<<<<<<< HEAD
+=======
+		7F05364A28D45174007DC2AE /* AbsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364828D45174007DC2AE /* AbsView.swift */; };
+		7F05364B28D45174007DC2AE /* AbsViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F05364928D45174007DC2AE /* AbsViewManager.swift */; };
+>>>>>>> origin/main
 		7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */ = {isa = PBXBuildFile; fileRef = 7F7E030D28D447C5008CE998 /*  bulgarian squat */; };
+		7FA69C8628D46B4F00375A5F /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA69C8428D46B4F00375A5F /* BackPlankView.swift */; };
+		7FA69C8728D46B4F00375A5F /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FA69C8528D46B4F00375A5F /* BackPlankManager.swift */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
 		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
@@ -26,7 +33,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+<<<<<<< HEAD
+=======
+		7F05364828D45174007DC2AE /* AbsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsView.swift; sourceTree = "<group>"; };
+		7F05364928D45174007DC2AE /* AbsViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsViewManager.swift; sourceTree = "<group>"; };
+>>>>>>> origin/main
 		7F7E030D28D447C5008CE998 /*  bulgarian squat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = " bulgarian squat"; sourceTree = "<group>"; };
+		7FA69C8428D46B4F00375A5F /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
+		7FA69C8528D46B4F00375A5F /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
 		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -56,6 +70,58 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+<<<<<<< HEAD
+=======
+		7F402E0428BD9AFD004BC36E /* Pushup */ = {
+			isa = PBXGroup;
+			children = (
+				7F402E0528BD9E9F004BC36E /* PushUpMotionManager.swift */,
+				7FD530C228C1AAF600535AF3 /* PushUpView.swift */,
+			);
+			path = Pushup;
+			sourceTree = "<group>";
+		};
+		7FF9EE2328D402DC00BBC4BE /* PopupView(nofinished) */ = {
+			isa = PBXGroup;
+			children = (
+				7FF9EE2628D4036E00BBC4BE /* PopupDialogView.swift */,
+			);
+			path = "PopupView(nofinished)";
+			sourceTree = "<group>";
+		};
+		7FF9EE2828D40BE000BBC4BE /* ReadyView */ = {
+			isa = PBXGroup;
+			children = (
+				7FF9EE2928D40C0000BBC4BE /* ReadyView.swift */,
+				7FF9EE2B28D411A900BBC4BE /* TraningView.swift */,
+			);
+			path = ReadyView;
+			sourceTree = "<group>";
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7F05364728D45174007DC2AE /* abs */ = {
+			isa = PBXGroup;
+			children = (
+				7F05364828D45174007DC2AE /* AbsView.swift */,
+				7F05364928D45174007DC2AE /* AbsViewManager.swift */,
+			);
+			name = abs;
+			path = ../../../abs;
+			sourceTree = "<group>";
+		};
+		7FA69C8328D46B4F00375A5F /* BackPlank */ = {
+			isa = PBXGroup;
+			children = (
+				7FA69C8428D46B4F00375A5F /* BackPlankView.swift */,
+				7FA69C8528D46B4F00375A5F /* BackPlankManager.swift */,
+			);
+			name = BackPlank;
+			path = ../../../../Downloads/BackPlank;
+			sourceTree = "<group>";
+		};
+>>>>>>> origin/main
 		D08AF2C728D1ECD200250045 /* Plank */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,9 +182,14 @@
 				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
 				D096C55F28D4434B00D6747C /* ReadyView.swift */,
 				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
+<<<<<<< HEAD
 				D096C58C28D4AC5B00D6747C /* Pushup */,
 				D096C58728D4AC2100D6747C /* BackPlank */,
 				D096C58128D4AB4D00D6747C /* abs */,
+=======
+				7FA69C8328D46B4F00375A5F /* BackPlank */,
+				7F05364728D45174007DC2AE /* abs */,
+>>>>>>> origin/main
 				7F7E030D28D447C5008CE998 /*  bulgarian squat */,
 				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
@@ -206,17 +277,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7FA69C8628D46B4F00375A5F /* BackPlankView.swift in Sources */,
 				D096C56028D4434B00D6747C /* ReadyView.swift in Sources */,
 				D096C59028D4AC5B00D6747C /* PushUpView.swift in Sources */,
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
 				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
+<<<<<<< HEAD
 				D096C58A28D4AC3300D6747C /* BackPlankManager.swift in Sources */,
 				D096C58B28D4AC3300D6747C /* BackPlankView.swift in Sources */,
 				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
 				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
 				D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */,
 				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */,
+=======
+				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
+				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
+				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift in Sources */,
+>>>>>>> origin/main
 				D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */,
+				7FA69C8728D46B4F00375A5F /* BackPlankManager.swift in Sources */,
 				D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */,
 				D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */,
 			);
