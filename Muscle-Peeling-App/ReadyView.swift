@@ -6,7 +6,7 @@ struct ReadyView: View {
     //設定時のセット数
     @State var setNum = 3
     @State var navigated = false
-    var image : [String]
+    var image : String
     
     var body: some View {
         
@@ -50,7 +50,7 @@ struct ReadyView: View {
                     .fill(Color.white)
                 // 図形の塗りつぶしに使うViewを指定
                     .frame(width:300, height: 120)
-                    .overlay(Text("\(count)回 × \(setNum)セット")
+                    .overlay(Text("\(setNum)セット × \(count)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
@@ -87,6 +87,6 @@ struct ReadyView: View {
 
 struct ReadyView_Previews: PreviewProvider {
     static var previews: some View {
-        ReadyView(image: ["プランク１", "プランク２"])
+        ReadyView(image: "プランク")
     }
 }
