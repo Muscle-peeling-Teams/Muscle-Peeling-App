@@ -8,7 +8,7 @@
 import SwiftUI
 
 @main
-struct Muscle_Peeling_AppApp: App {
+struct Muscle_Peeling_App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
