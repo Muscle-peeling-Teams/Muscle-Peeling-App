@@ -15,6 +15,7 @@ struct ReadyView: View {
                    
                    "腕立て：\n1.肘を曲げ、胸がつくまで体を下ろします。"]
     @State var result: String? = ""
+
     var body: some View {
         
             VStack(spacing: 30){
@@ -57,7 +58,7 @@ struct ReadyView: View {
                     .fill(Color.white)
                 // 図形の塗りつぶしに使うViewを指定
                     .frame(width:300, height: 120)
-                    .overlay(Text("\(count)回 × \(setNum)セット")
+                    .overlay(Text("\(setNum)セット × \(count)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.black)

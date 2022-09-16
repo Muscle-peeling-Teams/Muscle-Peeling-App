@@ -10,8 +10,10 @@ import SwiftUI
 struct SettingView: View {
     let Menu = ["クランク","バッククランク"]
     let menyu = ["ブルガリアンスクワット","スクワット","腹筋","腕立て"]
-    var fruits = ["1", "2", "3", "4" ]
+    var fruits = ["1","2","3","4"]
     @State private var selectedFruit = 0
+    @ObservedObject var viewModel = SettingViewModel()
+
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -41,7 +43,7 @@ struct SettingView: View {
                         Text("\(name)")
                             .frame(width: 300, height: 30, alignment: .leading)
                         
-                        bb()
+                        bb(num: $0)
                         
                         
                         
@@ -56,6 +58,7 @@ struct SettingView: View {
                            height: 100)
                     .edgesIgnoringSafeArea(.all)
                 Button(action: {
+                    print("\(viewModel.selectSets)")
                     dismiss()
                 }){
                     Text("    選択")
@@ -77,6 +80,8 @@ struct settei_Previews: PreviewProvider {
 
 struct bb: View {
     
+    @ObservedObject var viewModel = SettingViewModel()
+    
     let w = UIScreen.main.bounds.width
     var fruits = ["1","2","3","4","5"]
     @State private var selectedFruit = 0
@@ -86,13 +91,14 @@ struct bb: View {
                                 "31","32","33","34","35","36","37","38","39","40",
                                 "41","42","43","44","45","46","47","48","49","50"]
     @State private var bbb = 0
+    var num: Int
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
                 .foregroundColor(Color.white)
                 .shadow(radius: 10)
             HStack {
-                Picker(selection: $selectedFruit,
+                Picker(selection: $viewModel.selectSets[],
                        label: Text("")) {
                     ForEach(0..<5) {
                         Text(self.fruits[$0])
@@ -119,11 +125,6 @@ struct bb: View {
                 
             }
         }.frame(width: w*0.8, height: w*0.3)
-            .onAppear{
-                for i in 1...180{
-                    self.abc.append("\(i)")
-                }
-            }
     }
 }
 
@@ -151,6 +152,8 @@ struct aaa: View {
                       "161","162","163","164","165","166","167","168","169","170",
                       "171","172","173","174","175","176","177","178","179","180"]
     @State private var bbb = 0
+    @ObservedObject var viewModel = SettingViewModel()
+
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 5)
