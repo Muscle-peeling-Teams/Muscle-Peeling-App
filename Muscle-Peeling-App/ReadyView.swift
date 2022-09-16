@@ -6,8 +6,15 @@ struct ReadyView: View {
     //設定時のセット数
     @State var setNum = 3
     @State var navigated = false
-    var image : [String]
-    
+    @Binding var image : String
+    var example = ["腹筋：\n１.仰向けになり、交差状態からスタート\n2. おへそをのぞき込むようなイメージでゆっくりと息を吐きながら上半身を持ち上げる。  \nこの時に、腹筋を縦に縮ませるようにして力を込めるのがポイント。",
+                   "プランク：\n1.頭からかかとまでが一直線になるように意識する\n2.その姿勢のままキープ",
+                   "バックプランク：\n1.マットなどを敷いた上に仰向けで寝っ転がる\n2.マットなどを敷いた上に仰向けで寝っ転がる",
+                   "スクワット：\n1.足を肩幅より少し広めに開きます。\n2.股関節を曲げ、お尻を真下に落とすイメージで膝を曲げます。\n3 お尻を後ろに突き出し、膝が爪先より前に出ないようにしましょう",
+                   "ブルガリアンスクワット：\n1.後ろの足をベンチの上に乗せる。\n2.上体をできるだけ垂直に保ったまま、ゆっくりとしゃがんでいく。\n3.終わったら両足を入れ替え、同じ回数を繰り返す。",
+                   
+                   "腕立て：\n1.肘を曲げ、胸がつくまで体を下ろします。"]
+    @State var result: String? = ""
     var body: some View {
         
             VStack(spacing: 30){
@@ -16,24 +23,24 @@ struct ReadyView: View {
                 
                 // 四角形の描画
                 Rectangle()
-                    .fill(Color.white)
+                    .foregroundColor(Color.white)
+                    .shadow(radius: 10)
                 // 図形の塗りつぶしに使うViewを指定
                     .frame(width:300, height:300)
                     .overlay(
                         //スワイプによる画面切り替えの実装
                         TabView{
-                            Text("あいうえお")
+                            Image("\(image)")
+                                .resizable()
+                                .frame(width:300, height:300)
                                 .tabItem {
                                     Text("・")
                                 }
-                            Text("かきくけこ")
+                            Text("\(result!)")
                                 .tabItem {
                                     Text("・")
                                 }
-                            Text("さしすせそ")
-                                .tabItem {
-                                    Text("・")
-                                }
+                           
                         }
                         //スワイプ処理の実装
                             .tabViewStyle(.page)
@@ -78,15 +85,16 @@ struct ReadyView: View {
 //                .fullScreenCover(isPresented: $navigated) {
 //                    TrainingView()
 //                }
+                
         }
         
         Spacer()
         
+            .onAppear {
+                result = example.first(where: { $0.contains("\(image)") })
+            }
     }
+    
 }
 
-struct ReadyView_Previews: PreviewProvider {
-    static var previews: some View {
-        ReadyView(image: ["プランク１", "プランク２"])
-    }
-}
+

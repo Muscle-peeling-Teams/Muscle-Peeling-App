@@ -9,31 +9,36 @@ import SwiftUI
 
 struct MenuView: View {
     @ObservedObject var viewModel = MenuViewModel()
+    @State var image: String = ""
     
     var body: some View {
         ZStack{
             ScrollView{
                 HStack(spacing: 30){
                     VStack(spacing: 30){
-                        ForEach(viewModel.leftMenu, id: \.self){ name in
+                        ForEach(0..<viewModel.leftMenu.count){ number in
                             VStack(spacing: 0){
                                 
                                 
-                                Image("cat")
+                                Image("\(viewModel.leftMenu[number])")
                                     .resizable()
                                     .frame(width: 150, height: 200)
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
-                                        Text("\(name)")
+                                        Text("\(viewModel.leftMenu[number])")
                                             .frame(width: 150, height: 200,alignment: .top)
                                     )
                                 
                                 Button(action: {
-                                    print(name)
+                                    image = viewModel.leftMenu[number]
+                                    viewModel.showingModal.toggle()
                                 }){
                                     Text("選択")
                                         .frame(width: 150, height: 50)
                                         .background(Color.yellow)
+                                }
+                                .fullScreenCover(isPresented: $viewModel.showingModal) {
+                                    ReadyView(image: $image)
                                 }
                             }
                             
@@ -60,26 +65,32 @@ struct MenuView: View {
                                     SettingView()
                             }
                         
-                        
-                        ForEach(viewModel.rightMenu, id: \.self){ name in
+                        ForEach(0..<viewModel.rightMenu.count){ number in
                             VStack(spacing: 0){
-                                Image("cat")
+                                
+                                
+                                Image("\(viewModel.rightMenu[number])")
                                     .resizable()
                                     .frame(width: 150, height: 200)
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
-                                        Text("\(name)")
+                                        Text("\(viewModel.rightMenu[number])")
                                             .frame(width: 150, height: 200,alignment: .top)
                                     )
+                                
                                 Button(action: {
-                                    
-                                    print(name)
+                                    image = viewModel.rightMenu[number]
+                                    viewModel.showingModal.toggle()
                                 }){
                                     Text("選択")
                                         .frame(width: 150, height: 50)
                                         .background(Color.yellow)
                                 }
+                                .fullScreenCover(isPresented: $viewModel.showingModal) {
+                                    ReadyView(image: $image)
+                                }
                             }
+                            
                         }
                     }
                 }
