@@ -72,7 +72,7 @@ struct bb: View {
             HStack {
                 Picker(selection: $selectedFruit,
                        label: Text("")) {
-                    ForEach(0..<5) {
+                    ForEach(1..<5) {
                         Text(self.fruits[$0])
                             .font(.largeTitle)
                           
@@ -83,7 +83,7 @@ struct bb: View {
                 
                 Picker(selection: $bbb,
                        label: Text("")) {
-                    ForEach(0..<5) {
+                    ForEach(1..<5) {
                         Text(self.abc[$0])
                             .font(.largeTitle)
                           
@@ -114,7 +114,7 @@ struct aaa: View {
             HStack {
                 Picker(selection: $selectedFruit,
                        label: Text("")) {
-                    ForEach(0..<5) {
+                    ForEach(1..<5) {
                         Text(self.fruits[$0])
                             .font(.largeTitle)
                           
@@ -125,7 +125,7 @@ struct aaa: View {
                 
                 Picker(selection: $bbb,
                        label: Text("")) {
-                    ForEach(0..<5) {
+                    ForEach(1..<5) {
                         Text(self.abc[$0])
                             .font(.largeTitle)
                           

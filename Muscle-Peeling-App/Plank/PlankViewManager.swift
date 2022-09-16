@@ -25,7 +25,7 @@ final class PlankViewManager: ObservableObject{
     
     
     // トレーニングを行えているか
-    @Published var trainingSucess = 0
+    @Published var trainingSucess = 3
     
     @Published var plankTime = 5.0
     
@@ -140,7 +140,7 @@ final class PlankViewManager: ObservableObject{
                 plank()
                 trainingSucess = 0
             }
-        } else {
+        } else if trainingSucess == 2{
             self.motion.stopDeviceMotionUpdates()
             self.trainingTimer?.invalidate()
             self.speakTimer?.invalidate()
@@ -160,13 +160,15 @@ final class PlankViewManager: ObservableObject{
                     }
                 }
             }
+        } else {
+            
         }
     }
     
     // トレーニング終了
     func stopTraining() {
         // 終了
-        
+        trainingSucess = 3
         self.motion.stopDeviceMotionUpdates()
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
