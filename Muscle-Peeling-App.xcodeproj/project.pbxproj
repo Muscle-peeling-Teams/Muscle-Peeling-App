@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
+		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
+		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
+		D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CD28D1EE0F00250045 /* SettingView.swift */; };
+		D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */; };
+		D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2D228D1EECC00250045 /* SettingViewModel.swift */; };
 		D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift */; };
 		D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */; };
 		D0BA2F5328B48F7D00A2EE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */; };
@@ -31,6 +37,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
+		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
+		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		D08AF2CD28D1EE0F00250045 /* SettingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
+		D08AF2D228D1EECC00250045 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D0BA2F4B28B48F7C00A2EE72 /* Muscle-Peeling-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Muscle-Peeling-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muscle_Peeling_AppApp.swift; sourceTree = "<group>"; };
 		D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +77,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D08AF2C728D1ECD200250045 /* Plank */ = {
+			isa = PBXGroup;
+			children = (
+				D08AF2C328D1ECCA00250045 /* PlankView.swift */,
+				D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */,
+			);
+			path = Plank;
+			sourceTree = "<group>";
+		};
 		D0BA2F4228B48F7C00A2EE72 = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +109,11 @@
 			children = (
 				D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift */,
 				D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */,
+				D08AF2CC28D1EE0F00250045 /* MenuView.swift */,
+				D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */,
+				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
+				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
+				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
 				D0BA2F5428B48F7D00A2EE72 /* Preview Content */,
 			);
@@ -233,7 +259,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
+				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
+				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
+				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
 				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_AppApp.swift in Sources */,
+				D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */,
+				D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */,
+				D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
