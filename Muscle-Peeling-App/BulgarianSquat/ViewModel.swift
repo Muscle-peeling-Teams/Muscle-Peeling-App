@@ -8,12 +8,12 @@
 import CoreMotion
 import SwiftUI
 import AVFoundation
-final class ViewModel:ObservableObject {
+class SquatViewModel : ObservableObject {
     //次数
     
     
     // MotionManager.sharedでアクセスができる
-   static let shared: ViewModel = .init()
+   static let shared: SquatViewModel = .init()
     // privateのletでCMMotionManagerインスタンスを作成する
     private let motion = CMMotionManager()
 
@@ -236,6 +236,7 @@ final class ViewModel:ObservableObject {
     let timeInterval:Double = 0.3 //两次下蹲时间间隔必须大于0.3s
     var lastList = [Double]()
     let motionManager = CMMotionManager()
+    var maxCount = 10
     
     func  start() {
         self.num = 0
@@ -312,7 +313,7 @@ final class ViewModel:ObservableObject {
             newAction = true
         }
         
-        if lastList.count >= 10 {
+        if lastList.count >= maxCount {
             lastList.remove(at: 0)
         }
     }

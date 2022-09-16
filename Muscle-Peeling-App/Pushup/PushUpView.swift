@@ -38,5 +38,8 @@ struct PushUpView: View {
                 
             }
         }
+        .onAppear{
+            motionManager.ready()
+        }
     }
 }

@@ -11,7 +11,11 @@ class SettingViewModel: ObservableObject {
     @Published var selectedSet = [2,2,2,2,2,2]
     @Published var selectedPlay = [59,59,9,9,9,9]
     
-    func SetTraining(plank: Int, backPlank: Int, pushUp: Int, bulgarianSquat: Int, abs: Int) {
-        
+    func SetTraining(num: Int) -> Int {
+         return selectedSet[num]
+    }
+    
+    func CountTraining(num: Int) -> Int {
+        return selectedPlay[num]
     }
 }

@@ -1,8 +1,8 @@
 import SwiftUI
 
-struct ContentView: View {
+struct BulgarianView: View {
    
-    @ObservedObject var viewModel : ViewModel = .shared
+    @ObservedObject var viewModel : SquatViewModel = .shared
     var body: some View {
         ZStack{
             VStack{
@@ -59,15 +59,13 @@ struct ContentView: View {
             }
             
         }
+        .onAppear{
+            viewModel.startTimer()
+        }
                
     }
     }
 
 //        .onAppear{
 //           viewModel.startTimer()
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
 

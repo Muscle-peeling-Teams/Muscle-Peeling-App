@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */ = {isa = PBXBuildFile; fileRef = 7F7E030D28D447C5008CE998 /*  bulgarian squat */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
 		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
@@ -15,10 +14,12 @@
 		D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */; };
 		D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2D228D1EECC00250045 /* SettingViewModel.swift */; };
 		D096C56028D4434B00D6747C /* ReadyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C55F28D4434B00D6747C /* ReadyView.swift */; };
-		D096C58A28D4AC3300D6747C /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58828D4AC3300D6747C /* BackPlankManager.swift */; };
-		D096C58B28D4AC3300D6747C /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58928D4AC3300D6747C /* BackPlankView.swift */; };
 		D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */; };
 		D096C59028D4AC5B00D6747C /* PushUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58E28D4AC5B00D6747C /* PushUpView.swift */; };
+		D096C59328D4B86400D6747C /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59128D4B86400D6747C /* BackPlankManager.swift */; };
+		D096C59428D4B86400D6747C /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59228D4B86400D6747C /* BackPlankView.swift */; };
+		D096C59828D4B92800D6747C /* BulgarianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59628D4B92800D6747C /* BulgarianView.swift */; };
+		D096C59928D4B92800D6747C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59728D4B92800D6747C /* ViewModel.swift */; };
 		D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */; };
 		D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */; };
 		D0BA2F5328B48F7D00A2EE72 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */; };
@@ -26,7 +27,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		7F7E030D28D447C5008CE998 /*  bulgarian squat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = " bulgarian squat"; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
 		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -34,10 +34,12 @@
 		D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewModel.swift; sourceTree = "<group>"; };
 		D08AF2D228D1EECC00250045 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		D096C55F28D4434B00D6747C /* ReadyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadyView.swift; sourceTree = "<group>"; };
-		D096C58828D4AC3300D6747C /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackPlankManager.swift; path = "Muscle-Peeling-App/ bulgarian squat/BackPlankManager.swift"; sourceTree = SOURCE_ROOT; };
-		D096C58928D4AC3300D6747C /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackPlankView.swift; path = "Muscle-Peeling-App/ bulgarian squat/BackPlankView.swift"; sourceTree = SOURCE_ROOT; };
 		D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpMotionManager.swift; sourceTree = "<group>"; };
 		D096C58E28D4AC5B00D6747C /* PushUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpView.swift; sourceTree = "<group>"; };
+		D096C59128D4B86400D6747C /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
+		D096C59228D4B86400D6747C /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
+		D096C59628D4B92800D6747C /* BulgarianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulgarianView.swift; sourceTree = "<group>"; };
+		D096C59728D4B92800D6747C /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D0BA2F4B28B48F7C00A2EE72 /* Muscle-Peeling-App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Muscle-Peeling-App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D0BA2F4E28B48F7C00A2EE72 /* Muscle_Peeling_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Muscle_Peeling_App.swift; sourceTree = "<group>"; };
 		D0BA2F5028B48F7C00A2EE72 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,8 +77,8 @@
 		D096C58728D4AC2100D6747C /* BackPlank */ = {
 			isa = PBXGroup;
 			children = (
-				D096C58828D4AC3300D6747C /* BackPlankManager.swift */,
-				D096C58928D4AC3300D6747C /* BackPlankView.swift */,
+				D096C59128D4B86400D6747C /* BackPlankManager.swift */,
+				D096C59228D4B86400D6747C /* BackPlankView.swift */,
 			);
 			path = BackPlank;
 			sourceTree = "<group>";
@@ -88,6 +90,15 @@
 				D096C58E28D4AC5B00D6747C /* PushUpView.swift */,
 			);
 			path = Pushup;
+			sourceTree = "<group>";
+		};
+		D096C59528D4B91800D6747C /* BulgarianSquat */ = {
+			isa = PBXGroup;
+			children = (
+				D096C59628D4B92800D6747C /* BulgarianView.swift */,
+				D096C59728D4B92800D6747C /* ViewModel.swift */,
+			);
+			path = BulgarianSquat;
 			sourceTree = "<group>";
 		};
 		D0BA2F4228B48F7C00A2EE72 = {
@@ -116,10 +127,10 @@
 				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
 				D096C55F28D4434B00D6747C /* ReadyView.swift */,
 				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
+				D096C59528D4B91800D6747C /* BulgarianSquat */,
 				D096C58C28D4AC5B00D6747C /* Pushup */,
 				D096C58728D4AC2100D6747C /* BackPlank */,
 				D096C58128D4AB4D00D6747C /* abs */,
-				7F7E030D28D447C5008CE998 /*  bulgarian squat */,
 				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
 				D0BA2F5428B48F7D00A2EE72 /* Preview Content */,
@@ -193,7 +204,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */,
 				D0BA2F5628B48F7D00A2EE72 /* Preview Assets.xcassets in Resources */,
 				D0BA2F5328B48F7D00A2EE72 /* Assets.xcassets in Resources */,
 			);
@@ -208,13 +218,15 @@
 			files = (
 				D096C56028D4434B00D6747C /* ReadyView.swift in Sources */,
 				D096C59028D4AC5B00D6747C /* PushUpView.swift in Sources */,
+				D096C59828D4B92800D6747C /* BulgarianView.swift in Sources */,
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
 				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
-				D096C58A28D4AC3300D6747C /* BackPlankManager.swift in Sources */,
-				D096C58B28D4AC3300D6747C /* BackPlankView.swift in Sources */,
+				D096C59428D4B86400D6747C /* BackPlankView.swift in Sources */,
 				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
 				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
 				D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */,
+				D096C59328D4B86400D6747C /* BackPlankManager.swift in Sources */,
+				D096C59928D4B92800D6747C /* ViewModel.swift in Sources */,
 				D0BA2F4F28B48F7C00A2EE72 /* Muscle_Peeling_App.swift in Sources */,
 				D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */,
 				D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */,
