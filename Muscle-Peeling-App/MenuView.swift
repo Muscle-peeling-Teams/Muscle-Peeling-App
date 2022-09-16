@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct MenuView: View {
-    let leftMenu = ["筋肉","筋肉位置","永井"]
-    let rightMenu = ["おいしい","やみー","感謝感謝"]
+    @ObservedObject var viewModel = MenuViewModel()
+    
     var body: some View {
         ZStack{
             ScrollView{
                 HStack(spacing: 30){
-                    VStack(spacing: 50){
-                        ForEach(leftMenu, id: \.self){ name in
+                    VStack(){
+                        ForEach(viewModel.leftMenu, id: \.self){ name in
                             VStack(spacing: 0){
                                 
                                 
@@ -27,7 +27,7 @@ struct MenuView: View {
                                         Text("\(name)")
                                             .frame(width: 150, height: 200,alignment: .top)
                                     )
-                            
+                                
                                 Button(action: {
                                     print(name)
                                 }){
@@ -40,7 +40,7 @@ struct MenuView: View {
                         }
                     }
                     VStack(spacing: 30){
-                        Spacer()
+                        
                         Button(action: {
                             print("Button")
                             
@@ -57,7 +57,8 @@ struct MenuView: View {
                                 )
                         }
                         
-                        ForEach(rightMenu, id: \.self){ name in
+                        
+                        ForEach(viewModel.rightMenu, id: \.self){ name in
                             VStack(spacing: 0){
                                 Image("cat")
                                     .resizable()
