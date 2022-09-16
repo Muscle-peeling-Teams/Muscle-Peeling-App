@@ -23,7 +23,7 @@ final class PushUpMotionManager: ObservableObject{
     @Published var sensorjudge = true
     //トレーニングの成功、一回の成功
     @Published var trainingSucess = false
-    //トレーニングの回数
+    //トレーニングの現在の回数
     @Published var trainingCount = 1
     //トレーニングの現在のセット数
     @Published var trainingSetCount = 1
@@ -35,6 +35,13 @@ final class PushUpMotionManager: ObservableObject{
     @Published var countDown = 5
     // トレーニング時のボタンを透明にする
     @Published var buttonOpacity = true
+    //Pushup用の画像を変数に含める(受け渡しがうまく行かず現在未使用。設定用のクラスとかに収める可能性大)
+    @Published var pushupImage1 = "pushup1"
+    @Published var pushupImage2 = "pushup2"
+    //Pushup用の説明を変数に含める(受け渡しがうまく行かず現在未使用。設定用のクラスとかに収める可能性大)
+    @Published var pushupTalk1 = "下の図の場所に装着してください"
+    @Published var pushupTalk2 = "背中から足までを真っ直ぐ保ちましょう"
+    @Published var pushupTalk3 = "お尻の高さを維持しましょう"
     
     // センサーの値
     var x = 0.00
