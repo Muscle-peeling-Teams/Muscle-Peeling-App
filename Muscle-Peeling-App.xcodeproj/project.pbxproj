@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */ = {isa = PBXBuildFile; fileRef = 7F7E030D28D447C5008CE998 /*  bulgarian squat */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
 		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F7E030D28D447C5008CE998 /*  bulgarian squat */ = {isa = PBXFileReference; lastKnownFileType = folder; path = " bulgarian squat"; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
 		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */,
 				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
 				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
+				7F7E030D28D447C5008CE998 /*  bulgarian squat */,
 				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
 				D0BA2F5428B48F7D00A2EE72 /* Preview Content */,
@@ -232,6 +235,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7F7E030E28D447C5008CE998 /*  bulgarian squat in Resources */,
 				D0BA2F5628B48F7D00A2EE72 /* Preview Assets.xcassets in Resources */,
 				D0BA2F5328B48F7D00A2EE72 /* Assets.xcassets in Resources */,
 			);
