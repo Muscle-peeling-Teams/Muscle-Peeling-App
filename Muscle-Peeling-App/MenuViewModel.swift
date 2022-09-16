@@ -11,4 +11,7 @@ class MenuViewModel: ObservableObject {
     @Published var showingModal = false
     let leftMenu = ["プランク","ブルガリアンスクワット","腹筋"]
     let rightMenu = ["バックプランク","スクワット","腕立て"]
+    
+    let leftImage = ["plank", "bulgarian squat","abs"]
+    let rightImage = ["back", "squat", "pushup"]
 }

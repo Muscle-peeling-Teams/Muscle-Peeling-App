@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F7DBBD128D4394A000DA7D3 /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DBBCF28D4394A000DA7D3 /* BackPlankManager.swift */; };
+		7F7DBBD228D4394A000DA7D3 /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DBBD028D4394A000DA7D3 /* BackPlankView.swift */; };
+		7F7DBBD528D43DEE000DA7D3 /* AbsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DBBD428D43DEE000DA7D3 /* AbsView.swift */; };
+		7F7DBBD728D43DFC000DA7D3 /* AbsViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DBBD628D43DFC000DA7D3 /* AbsViewManager.swift */; };
+		7F7DBBDD28D44473000DA7D3 /* RedyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F7DBBDC28D44473000DA7D3 /* RedyView.swift */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
 		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
@@ -37,6 +42,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7F7DBBCF28D4394A000DA7D3 /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
+		7F7DBBD028D4394A000DA7D3 /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
+		7F7DBBD428D43DEE000DA7D3 /* AbsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsView.swift; sourceTree = "<group>"; };
+		7F7DBBD628D43DFC000DA7D3 /* AbsViewManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsViewManager.swift; sourceTree = "<group>"; };
+		7F7DBBDC28D44473000DA7D3 /* RedyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RedyView.swift; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
 		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -77,6 +87,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7F7DBBCE28D43916000DA7D3 /* Back */ = {
+			isa = PBXGroup;
+			children = (
+				7F7DBBCF28D4394A000DA7D3 /* BackPlankManager.swift */,
+				7F7DBBD028D4394A000DA7D3 /* BackPlankView.swift */,
+			);
+			path = Back;
+			sourceTree = "<group>";
+		};
+		7F7DBBD328D43D6C000DA7D3 /* abs */ = {
+			isa = PBXGroup;
+			children = (
+				7F7DBBD428D43DEE000DA7D3 /* AbsView.swift */,
+				7F7DBBD628D43DFC000DA7D3 /* AbsViewManager.swift */,
+			);
+			path = abs;
+			sourceTree = "<group>";
+		};
 		D08AF2C728D1ECD200250045 /* Plank */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +141,9 @@
 				D08AF2D028D1EEBF00250045 /* MenuViewModel.swift */,
 				D08AF2CD28D1EE0F00250045 /* SettingView.swift */,
 				D08AF2D228D1EECC00250045 /* SettingViewModel.swift */,
+				7F7DBBDC28D44473000DA7D3 /* RedyView.swift */,
+				7F7DBBD328D43D6C000DA7D3 /* abs */,
+				7F7DBBCE28D43916000DA7D3 /* Back */,
 				D08AF2C728D1ECD200250045 /* Plank */,
 				D0BA2F5228B48F7D00A2EE72 /* Assets.xcassets */,
 				D0BA2F5428B48F7D00A2EE72 /* Preview Content */,
@@ -259,6 +290,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
+				7F7DBBD728D43DFC000DA7D3 /* AbsViewManager.swift in Sources */,
+				7F7DBBDD28D44473000DA7D3 /* RedyView.swift in Sources */,
+				7F7DBBD128D4394A000DA7D3 /* BackPlankManager.swift in Sources */,
+				7F7DBBD228D4394A000DA7D3 /* BackPlankView.swift in Sources */,
 				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
 				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
 				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
@@ -266,6 +301,7 @@
 				D08AF2CF28D1EE0F00250045 /* SettingView.swift in Sources */,
 				D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */,
 				D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */,
+				7F7DBBD528D43DEE000DA7D3 /* AbsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -421,7 +457,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
-				DEVELOPMENT_TEAM = UK3QAQ2MSD;
+				DEVELOPMENT_TEAM = MW8JTL62A9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -429,12 +465,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.jec.cm.Muscle-Peeling-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.jec.cm.Muscle-Peeling-oubo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -450,7 +487,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
-				DEVELOPMENT_TEAM = UK3QAQ2MSD;
+				DEVELOPMENT_TEAM = MW8JTL62A9;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -458,12 +495,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.jec.cm.Muscle-Peeling-App";
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.jec.cm.Muscle-Peeling-oubo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

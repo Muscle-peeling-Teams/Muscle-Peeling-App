@@ -19,9 +19,9 @@ struct MenuView: View {
                             VStack(spacing: 0){
                                 
                                 
-                                Image("cat")
+                                Image("\(name)")
                                     .resizable()
-                                    .frame(width: 150, height: 200)
+                                    .frame(width: 150, height: 160)
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
                                         Text("\(name)")
@@ -63,9 +63,9 @@ struct MenuView: View {
                         
                         ForEach(viewModel.rightMenu, id: \.self){ name in
                             VStack(spacing: 0){
-                                Image("cat")
+                                Image("\(name)")
                                     .resizable()
-                                    .frame(width: 150, height: 200)
+                                    .frame(width: 150, height: 160)
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
                                         Text("\(name)")
