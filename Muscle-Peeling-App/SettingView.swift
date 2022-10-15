@@ -325,7 +325,7 @@ struct SettingView: View {
                 Button(action: {
                     dismiss()
                     for i in 0..<6 {
-                        viewModel.selectedSet[i] = 
+                        viewModel.set[i] = viewModel.selectedSet[i] + 1
                     }
                 }){
                     Text("    選択")
