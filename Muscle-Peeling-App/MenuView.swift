@@ -10,6 +10,7 @@ import SwiftUI
 struct MenuView: View {
     @ObservedObject var viewModel = MenuViewModel()
     @State var image: String = ""
+    @StateObject var settingViewModel: SettingViewModel = .shared
     
     var body: some View {
         ZStack{
@@ -30,7 +31,7 @@ struct MenuView: View {
                                     )
                                 
                                 Button(action: {
-                                    image = viewModel.leftMenu[number]
+                                    image = viewModel.leftMenu[viewModel.selectNumber(image: viewModel.leftMenu[number])]
                                     viewModel.showingModal.toggle()
                                 }){
                                     Text("選択")
@@ -38,7 +39,7 @@ struct MenuView: View {
                                         .background(Color.yellow)
                                 }
                                 .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    ReadyView(image: $image)
+                                    ReadyView(settingViewModel: settingViewModel, num: number, image: $image)
                                 }
                             }
                             
@@ -62,7 +63,7 @@ struct MenuView: View {
                                 )
                         }
                         .fullScreenCover(isPresented: $viewModel.SettingModal) {
-                                SettingView()
+                            SettingView(viewModel: settingViewModel)
                             }
                         
                         ForEach(0..<viewModel.rightMenu.count){ number in
@@ -87,7 +88,7 @@ struct MenuView: View {
                                         .background(Color.yellow)
                                 }
                                 .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    ReadyView(image: $image)
+                                    ReadyView(settingViewModel: settingViewModel, num: number, image: $image)
                                 }
                             }
                             
