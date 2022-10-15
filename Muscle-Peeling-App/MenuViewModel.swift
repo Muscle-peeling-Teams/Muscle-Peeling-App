@@ -19,8 +19,14 @@ class MenuViewModel: ObservableObject {
             num = 0
         } else if image == "バッグプランク" {
             num = 1
-        } else {
-            
+        } else if image == "ブルガリアンスクワット"{
+            num = 2
+        } else if image == "スクワット" {
+            num = 3
+        } else if image == "腹筋" {
+            num = 4
+        } else if image == "腕立て" {
+            num = 5
         }
         return num
     }
