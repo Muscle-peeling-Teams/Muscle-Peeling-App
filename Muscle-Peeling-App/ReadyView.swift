@@ -5,8 +5,12 @@ struct ReadyView: View {
     @State var count = 10
     //設定時のセット数
     @State var setNum = 3
-    @State var navigated = false
+    @StateObject var readyViewModel = ReadyViewModel()
+    @ObservedObject var settingViewModel: SettingViewModel
+    var num: Int
     @Binding var image : String
+    
+    @Environment(\.dismiss) var dismiss
     var example = ["腹筋：\n１.仰向けになり、交差状態からスタート\n2. おへそをのぞき込むようなイメージでゆっくりと息を吐きながら上半身を持ち上げる。  \nこの時に、腹筋を縦に縮ませるようにして力を込めるのがポイント。",
                    "プランク：\n1.頭からかかとまでが一直線になるように意識する\n2.その姿勢のままキープ",
                    "バックプランク：\n1.マットなどを敷いた上に仰向けで寝っ転がる\n2.マットなどを敷いた上に仰向けで寝っ転がる",
@@ -19,6 +23,13 @@ struct ReadyView: View {
     var body: some View {
         
             VStack(spacing: 30){
+                HStack {
+                    Button("<戻る"){
+                        dismiss()
+                    }
+                    .padding()
+                    Spacer()
+                }
                 
                 Spacer()
                 
@@ -58,7 +69,7 @@ struct ReadyView: View {
                     .fill(Color.white)
                 // 図形の塗りつぶしに使うViewを指定
                     .frame(width:300, height: 120)
-                    .overlay(Text("\(setNum)セット × \(count)")
+                    .overlay(Text("\(settingViewModel.selectedSet[num])セット × \(settingViewModel.selectedPlay[num])")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
@@ -69,7 +80,7 @@ struct ReadyView: View {
                 
                 Button {
                     //STARTボタンを押した際の処理
-                    self.navigated.toggle()
+                    readyViewModel.navigated.toggle()
                 } label: {
                     // 楕円形の描画
                         Text("START")
@@ -83,8 +94,8 @@ struct ReadyView: View {
                                     .stroke(Color(.black), lineWidth: 1.0)
                             )
                 }
-                .fullScreenCover(isPresented: $navigated) {
-                    AbsView()
+                .fullScreenCover(isPresented: $readyViewModel.navigated) {
+                    PlankView()
                 }
                 
         }
@@ -93,6 +104,7 @@ struct ReadyView: View {
         
             .onAppear {
                 result = example.first(where: { $0.contains("\(image)") }) ?? "プランク"
+            print("\(num)")
             }
     }
     

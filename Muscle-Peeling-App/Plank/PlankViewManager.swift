@@ -9,10 +9,10 @@ import CoreMotion
 import SwiftUI
 import AVFoundation
 
-final class PlankViewManager: ObservableObject{
+final class PlankViewModel: ObservableObject{
     // staticでインスタンスを保持しておく
     // MotionManager.sharedでアクセスができる
-    static let shared: PlankViewManager = .init()
+    static let shared: PlankViewModel = .init()
     // privateのletでCMMotionManagerインスタンスを作成する
     private let motion = CMMotionManager()
     
@@ -27,7 +27,10 @@ final class PlankViewManager: ObservableObject{
     // トレーニングを行えているか
     @Published var trainingSucess = 3
     
-    @Published var plankTime = 5.0
+    @Published var plankTime = 0.0
+    @Published var maxPlankTime = 10.0
+    
+    var trainingFinish = false
     
     var systemImage = "xmark"
     
@@ -95,6 +98,7 @@ final class PlankViewManager: ObservableObject{
     // プランク
     func plank() {
         speakTimes()
+        plankTime = maxPlankTime
         speeche(text: "スタート")
         startQueuedUpdates()
         
@@ -109,10 +113,10 @@ final class PlankViewManager: ObservableObject{
             print("\(self.plankTime)")
             if self.plankTime <= 0.0 {
                 self.trainingSucess = 2
-                if (self.setCount <= self.setMaxCount) {
-                    self.pauseTraining()
-                } else {
+                if (self.setCount >= self.setMaxCount) {
                     self.stopTraining()
+                } else {
+                    self.pauseTraining()
                 }
             }
         }
@@ -148,6 +152,8 @@ final class PlankViewManager: ObservableObject{
             speechSynthesizer.pauseSpeaking(at: .word)
             speeche(text: "第\(setCount)セット終了")
             var pause = 10
+            plankTime = maxPlankTime
+            setCount += 1
             pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 pause -= 1
                 if pause <= 5 {
@@ -155,7 +161,6 @@ final class PlankViewManager: ObservableObject{
                     if pause <= 0 {
                         self.pauseTimer?.invalidate()
                         self.trainingSucess = 0
-                        self.plankTime = 5.0
                         self.plank()
                     }
                 }
@@ -173,8 +178,9 @@ final class PlankViewManager: ObservableObject{
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
         self.stopSpeacTimer?.invalidate()
-        plankTime = 60.0
+        plankTime = maxPlankTime
         setCount = 1
+        trainingFinish = true
         speechSynthesizer.pauseSpeaking(at: .word)
         speeche(text: "お疲れさまでした")
         buttonOpacity.toggle()

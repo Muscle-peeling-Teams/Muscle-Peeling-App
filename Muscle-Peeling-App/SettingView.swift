@@ -14,11 +14,12 @@ struct SettingView: View {
     let w = UIScreen.main.bounds.width
     
     
-    @ObservedObject var viewModel = SettingViewModel()
-    @ObservedObject var plankViewModel: PlankViewManager = .shared
+    @ObservedObject var viewModel: SettingViewModel
+    @ObservedObject var plankViewModel: PlankViewModel = .shared
     @ObservedObject var backPlankViewModel: BackPlankManager = .shared
     @ObservedObject var pushUpViewModel: PushUpMotionManager = .shared
     @ObservedObject var bulgarianSquatViewModel: SquatViewModel = .shared
+    @ObservedObject var absViewModel: MotionManager = .shared
     
     @Environment(\.dismiss) var dismiss
     @State var plays: [String] = ["1","2","3","4","5","6","7","8","9","10",
@@ -60,7 +61,7 @@ struct SettingView: View {
                             .foregroundColor(Color.white)
                             .shadow(radius: 10)
                         HStack {
-                            Picker(selection: $viewModel.selectedSet[1],
+                            Picker(selection: $viewModel.selectedSet[0],
                                    label: Text("")) {
                                 ForEach(0..<5) {
                                     Text(self.fruits[$0])
@@ -72,7 +73,7 @@ struct SettingView: View {
                             Text("セット")
                                 .font(.largeTitle)
                             
-                            Picker(selection: $viewModel.selectedPlay[1],
+                            Picker(selection: $viewModel.selectedPlay[0],
                                    label: Text("")) {
                                 ForEach(0..<180) {
                                     Text(self.times[$0])
@@ -323,14 +324,9 @@ struct SettingView: View {
                     .edgesIgnoringSafeArea(.all)
                 Button(action: {
                     dismiss()
-                    plankViewModel.setMaxCount = viewModel.SetTraining(num: 0)
-                    plankViewModel.plankTime = Double(viewModel.CountTraining(num: 0))
-                    backPlankViewModel.setMaxCount = viewModel.SetTraining(num: 1)
-                    backPlankViewModel.setMaxCount = viewModel.CountTraining(num: 1)
-                    bulgarianSquatViewModel.setMaxCount = viewModel.SetTraining(num: 2)
-                    bulgarianSquatViewModel.maxCount = viewModel.SetTraining(num: 2)
-                    pushUpViewModel.settingCount = viewModel.CountTraining(num: 5)
-                    pushUpViewModel.settingSetCount = viewModel.SetTraining(num: 5)
+                    for i in 0..<6 {
+                        viewModel.selectedSet[i] = 
+                    }
                 }){
                     Text("    選択")
                         .foregroundColor(Color.white)
@@ -344,11 +340,6 @@ struct SettingView: View {
     }
 }
 
-struct settei_Previews: PreviewProvider {
-    static var previews: some View {
-        SettingView()
-    }
-}
 
 
 

@@ -10,4 +10,5 @@ import Foundation
 class ReadyViewModel: ObservableObject {
     var setCount = [2,2,2,2,2,2]
     var count = [59,59,9,9,9,9]
+    @Published var navigated = false
 }
