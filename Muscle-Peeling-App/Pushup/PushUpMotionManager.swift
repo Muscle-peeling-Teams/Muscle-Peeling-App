@@ -28,14 +28,18 @@ final class PushUpMotionManager: ObservableObject{
     //トレーニングの現在のセット数
     @Published var trainingSetCount = 1
     //トレーニングの回数設定(テストでは3)
-    @Published var settingCount = 3
+    @Published var settingCount = 10
     //トレーニングの設定セット数
-    @Published var settingSetCount = 2
+    @Published var settingSetCount = 3
     //スタートまでのカウントダウン
     @Published var countDown = 5
     // トレーニング時のボタンを透明にする
     @Published var buttonOpacity = true
-    
+    //トレーニング終了判定
+    @Published var trainingFinished = false
+    //メニューへ戻るボタンの表示判定
+    @Published var finishActionButton = false
+
     // センサーの値
     var x = 0.00
     var y = 0.00
@@ -92,8 +96,16 @@ final class PushUpMotionManager: ObservableObject{
     
     // 腕立て
     func pushUpStart() {
+        trainingCount = 1
         speakTimes(SensorJudge:sensorjudge)
             speeche(text: "はじめてください")
+        startQueuedUpdates()
+        pushUpCount()
+    }
+    
+    func pauseRestart(){
+        speakTimes(SensorJudge:sensorjudge)
+            speeche(text: "再開してください")
         startQueuedUpdates()
         pushUpCount()
     }
@@ -126,6 +138,7 @@ final class PushUpMotionManager: ObservableObject{
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
         self.stopSpeacTimer?.invalidate()
+        self.speeche(text: "休憩してください、休憩時間30秒です")
         var pauseTime = 10
         
         pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){_ in
@@ -138,9 +151,33 @@ final class PushUpMotionManager: ObservableObject{
 
                 if pauseTime <= 0{
                     self.pauseTimer?.invalidate()
-                    self.trainingCount = 1
                     self.sensorjudge = false
                     self.pushUpStart()
+                }
+            }
+        }
+    }
+    
+    func pauseTraining(){
+        self.motion.stopDeviceMotionUpdates()
+        self.trainingTimer?.invalidate()
+        self.speakTimer?.invalidate()
+        self.stopSpeacTimer?.invalidate()
+        self.speeche(text: "10秒だけ休憩してください")
+        var pauseTime = 10
+        
+        pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){_ in
+            pauseTime -= 1
+
+            if pauseTime <= 5 {
+                if pauseTime > 0 {
+                self.speeche(text: String(pauseTime))
+                }
+
+                if pauseTime <= 0{
+                    self.pauseTimer?.invalidate()
+                    self.sensorjudge = false
+                    self.pauseRestart()
                 }
             }
         }
@@ -153,11 +190,26 @@ final class PushUpMotionManager: ObservableObject{
             self.trainingTimer?.invalidate()
             self.speakTimer?.invalidate()
             self.stopSpeacTimer?.invalidate()
-            self.speeche(text: "終了")
+            self.speeche(text: "中止してメニューに戻ります")
             self.buttonOpacity.toggle()
-            print("終了")
+            print("中止")
+            //finishActionButton = true
+            trainingFinished = true
         }
-
+    
+    func finishTraining(){
+        // 終了
+        self.motion.stopDeviceMotionUpdates()
+        self.trainingTimer?.invalidate()
+        self.speakTimer?.invalidate()
+        self.stopSpeacTimer?.invalidate()
+        self.speeche(text: "終了です、お疲れ様でした")
+        self.buttonOpacity.toggle()
+        print("終了")
+        //finishActionButton = true
+        trainingFinished = true
+    }
+    
         // 音声作動範囲
         //sucess判定は腕立てでいる？腰が浮いてるとかの判定？
     func speakTimes(SensorJudge: Bool) {
@@ -173,14 +225,14 @@ final class PushUpMotionManager: ObservableObject{
                         if self.trainingCount >= self.settingCount{
                             //現在のセット数と設定セット数の比較
                             if self.trainingSetCount >= self.settingSetCount{
-                                self.stopTraining()
+                                self.finishTraining()
                                 
                             }else{
-                                self.speeche(text: "休憩してください")
                                 self.trainingSetCount += 1
                                 self.motion.stopDeviceMotionUpdates()
                                 self.pauseAction()
                             }
+
                         } else {
                         self.adviceSensor(sucess: "\(self.trainingCount)回、下げてください", sensorJudge: self.sensorjudge)
                             self.sensorjudge = false

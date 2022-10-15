@@ -16,7 +16,7 @@ struct AbsView: View {
         ZStack{
             VStack{
                 Spacer()
-                Text("第\(plankViewManager.setcount)セット \(plankViewManager.count)回目")
+                Text("第\(plankViewManager.daicount)セット \(plankViewManager.count)回目")
                     .font(.largeTitle)
                 
                 Image("plank")
