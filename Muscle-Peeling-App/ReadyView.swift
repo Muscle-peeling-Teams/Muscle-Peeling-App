@@ -82,10 +82,10 @@ struct ReadyView: View {
                                 RoundedRectangle(cornerRadius: 1000)
                                     .stroke(Color(.black), lineWidth: 1.0)
                             )
-            }
-//                .fullScreenCover(isPresented: $navigated) {
-//                    TrainingView()
-//                }
+                }
+                .fullScreenCover(isPresented: $navigated) {
+                    if result
+                }
                 
         }
         
