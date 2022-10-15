@@ -11,7 +11,7 @@ class MenuViewModel: ObservableObject {
     @Published var showingModal = false
     @Published var SettingModal = false
     let leftMenu = ["プランク","ブルガリアンスクワット","腹筋"]
-    let rightMenu = ["バックプランク","スクワット","腕立て"]
+    let rightMenu = ["バックプランク","腕立て"]
     
     func selectNumber(image: String)-> Int{
         var num = 0
