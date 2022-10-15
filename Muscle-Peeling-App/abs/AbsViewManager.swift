@@ -51,8 +51,10 @@ final class MotionManager: ObservableObject{
     @Published var count = 0
     
     var maxcount = 10
-    var setcount = 1
+    var setcount = 0
     var maxsetcount = 3
+    
+    var daicount = 1
     
     
     
@@ -101,6 +103,7 @@ final class MotionManager: ObservableObject{
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
             
             self.countDown -= 1
+            
             self.speeche(text: String(self.countDown))
             print("\(self.countDown)")
             if self.countDown <= 0 {
@@ -131,6 +134,7 @@ final class MotionManager: ObservableObject{
             if self.count >= self.maxcount {
                 self.trainingSucess = 2
                 self.setcount += 1
+                self.daicount += 1
                 if (self.setcount <= self.setMaxCount) {
                     self.pauseTraining()
                 } else {
