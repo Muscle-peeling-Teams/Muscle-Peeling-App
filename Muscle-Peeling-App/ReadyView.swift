@@ -84,7 +84,7 @@ struct ReadyView: View {
                             )
                 }
                 .fullScreenCover(isPresented: $navigated) {
-                    if result
+                    AbsView()
                 }
                 
         }
