@@ -13,6 +13,7 @@ struct SettingView: View {
     var fruits = ["1","2","3","4","5"]
     let w = UIScreen.main.bounds.width
     
+    
     @ObservedObject var viewModel = SettingViewModel()
     @ObservedObject var plankViewModel: PlankViewManager = .shared
     @ObservedObject var backPlankViewModel: BackPlankManager = .shared
