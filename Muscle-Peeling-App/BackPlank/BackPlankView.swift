@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct BackPlankView: View {
-    @ObservedObject var backManager : BackPlankManager
+    @ObservedObject var backManager : BackPlankManager = .shared
     var body: some View {
         ZStack{
             VStack{

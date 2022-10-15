@@ -95,7 +95,19 @@ struct ReadyView: View {
                             )
                 }
                 .fullScreenCover(isPresented: $readyViewModel.navigated) {
-                    PlankView()
+                    if image == "腕立て" {
+                        PushUpView()
+                    }else if image == "プランク" {
+                        PlankView()
+                    }else if image == "ブルガリアンスクワット"{
+                        BulgarianView()
+                    }else if image == "バックプランク"{
+                        BackPlankView()
+                    }else if image == "腹筋"{
+                        AbsView()
+                    }else{
+                        //処理なし
+                    }
                 }
                 
         }
