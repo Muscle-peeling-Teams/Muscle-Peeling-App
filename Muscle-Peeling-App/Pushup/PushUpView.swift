@@ -35,6 +35,7 @@ struct PushUpView: View {
                             Button(action: {
                                 if motionManager.trainingFinished == false{
                                     motionManager.pauseTraining()
+                                    
                                 }else{
                                     //終了時には反応させない
                                 }
