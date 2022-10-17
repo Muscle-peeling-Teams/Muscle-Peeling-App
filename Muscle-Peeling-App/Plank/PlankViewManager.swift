@@ -28,7 +28,7 @@ final class PlankViewModel: ObservableObject{
     @Published var trainingSucess = 3
     
     @Published var plankTime = 0.0
-    @Published var maxPlankTime = 10.0
+    @Published var maxPlankTime = 60.0
     
     var trainingFinish = false
     
