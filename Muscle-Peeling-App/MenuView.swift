@@ -59,29 +59,27 @@ struct MenuView: View {
                         Spacer()
                         
                         //設定ボタン
+                        Button(action: {
+                            print("Button")
+                            viewModel.SettingModal.toggle()
+                        }) {
                             Image("設定")
                                 .resizable()
-                                .frame(width: 140, height: 150)
+                                .frame(width: 150, height: 200)
                                 .aspectRatio(contentMode: .fit)
                                 .overlay(
                                     //上に名前表示
                                     Text("設定")
-                                        .frame(width: 150, height: 190,alignment: .top)
+                                        .frame(width: 150, height: 200,alignment: .bottom)
+                                    
                                 )
-                        
-                        //選択ボタン
-                        Button(action: {
-                            viewModel.SettingModal.toggle()
-                        }){
-                            Text("選択")
-                                .frame(width: 150, height: 50)
-                                .background(Color.blue)
-                                .foregroundColor(Color.white)
                         }
                         .fullScreenCover(isPresented: $viewModel.SettingModal) {
                             SettingView(viewModel: settingViewModel)
                             }
-                                                                        
+                        
+                        Spacer()
+                                                
                         //右側のメニュー
                         ForEach(0..<viewModel.rightMenu.count){ number in
                             VStack(spacing: 0){
@@ -108,6 +106,7 @@ struct MenuView: View {
                                     ReadyView(settingViewModel: settingViewModel, num: viewModel.selectNumber(image: image), image: $image)
                                 }
                             }
+                            
                         }
                     }
                 }
