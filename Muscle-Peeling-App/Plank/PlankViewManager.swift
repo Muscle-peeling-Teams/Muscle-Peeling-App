@@ -153,6 +153,7 @@ final class PlankViewModel: ObservableObject{
             self.stopSpeacTimer?.invalidate()
             speechSynthesizer.pauseSpeaking(at: .word)
             speeche(text: "第\(setCount)セット終了")
+            trainingSucess = 3
             var pause = 10
             plankTime = maxPlankTime
             setCount += 1
