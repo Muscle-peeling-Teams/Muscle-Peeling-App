@@ -98,6 +98,7 @@ struct PushUpView: View {
             motionManager.trainingCount = 1
             motionManager.trainingSetCount = 1
             motionManager.ready()
+            motionManager.pauseNum = 3
         }
     }
 }

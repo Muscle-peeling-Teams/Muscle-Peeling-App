@@ -337,8 +337,8 @@ struct SettingView: View {
                     bulgarianSquatViewModel.maxCount = viewModel.SetTraining(num: 2)
                     absViewModel.setMaxCount = viewModel.SetTraining(num: 4)
                     absViewModel.setCount = viewModel.CountTraining(num: 4)
-                    pushUpViewModel.settingCount = viewModel.CountTraining(num: 5)
-                    pushUpViewModel.settingSetCount = viewModel.SetTraining(num: 5)
+                    pushUpViewModel.settingCount = viewModel.CountTraining(num: 3)
+                    pushUpViewModel.settingSetCount = viewModel.SetTraining(num: 10)
                 }){
                     Text("    選択")
                         .foregroundColor(Color.white)
