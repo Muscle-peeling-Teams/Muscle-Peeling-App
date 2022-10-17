@@ -8,8 +8,6 @@
 import SwiftUI
 
 
-
-
 struct AbsView: View {
     @StateObject var plankViewManager: MotionManager = .shared
     var body: some View {

@@ -64,7 +64,7 @@ struct PlankView: View {
                     } else {
                         Button {
                             dismiss()
-                            dismiss()
+                            plankViewModel.trainingFinish = false
                         } label: {
                             // 楕円形の描画
                             Text("お疲れさまです")

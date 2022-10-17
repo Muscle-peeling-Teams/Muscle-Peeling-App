@@ -39,7 +39,7 @@ struct MenuView: View {
                                 
                                 //選択ボタン
                                 Button(action: {
-                                    image = viewModel.leftMenu[viewModel.selectNumber(image: viewModel.leftMenu[number])]
+                                    image = viewModel.leftMenu[number]
                                     viewModel.showingModal.toggle()
                                 }){
                                     Text("選択")
@@ -47,7 +47,7 @@ struct MenuView: View {
                                         .background(Color.yellow)
                                 }
                                 .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    ReadyView(settingViewModel: settingViewModel, num: number, image: $image)
+                                    ReadyView(settingViewModel: settingViewModel, num: viewModel.selectNumber(image: image), image: $image)
                                 }
                             }
                             
@@ -103,7 +103,7 @@ struct MenuView: View {
                                         .background(Color.yellow)
                                 }
                                 .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    ReadyView(settingViewModel: settingViewModel, num: number, image: $image)
+                                    ReadyView(settingViewModel: settingViewModel, num: viewModel.selectNumber(image: image), image: $image)
                                 }
                             }
                             

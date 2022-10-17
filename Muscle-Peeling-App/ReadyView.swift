@@ -22,60 +22,73 @@ struct ReadyView: View {
 
     var body: some View {
         
-            VStack(spacing: 30){
-                HStack {
-                    Button("<戻る"){
-                        dismiss()
-                    }
-                    .padding()
-                    Spacer()
+        VStack(spacing: 30){
+            HStack {
+                Button("<戻る"){
+                    dismiss()
                 }
-                
+                .padding()
                 Spacer()
-                
-                // 四角形の描画
-                Rectangle()
-                    .foregroundColor(Color.white)
-                    .shadow(radius: 10)
-                // 図形の塗りつぶしに使うViewを指定
-                    .frame(width:300, height:300)
-                    .overlay(
-                        //スワイプによる画面切り替えの実装
-                        TabView{
-                            Image("\(image)")
-                                .resizable()
-                                .frame(width:300, height:300)
-                                .tabItem {
-                                    Text("・")
-                                }
-                            Text("\(result)")
-                                .tabItem {
-                                    Text("・")
-                                }
-                           
-                        }
-                        //スワイプ処理の実装
-                            .tabViewStyle(.page)
-                        //画面下部に表示する「・」の部分
-                            .indexViewStyle(
-                                .page(backgroundDisplayMode: .always)
-                            )
-                    )
-                    .border(Color.black)
-                
-                
+            }
+            
+            Spacer()
+            
+            // 四角形の描画
+            Rectangle()
+                .foregroundColor(Color.white)
+                .shadow(radius: 10)
+            // 図形の塗りつぶしに使うViewを指定
+                .frame(width:300, height:300)
+                .overlay(
+                    //スワイプによる画面切り替えの実装
+                    TabView{
+                        Image("\(image)")
+                            .resizable()
+                            .frame(width:300, height:300)
+                            .tabItem {
+                                Text("・")
+                            }
+                        Text("\(result)")
+                            .tabItem {
+                                Text("・")
+                            }
+                        
+                    }
+                    //スワイプ処理の実装
+                        .tabViewStyle(.page)
+                    //画面下部に表示する「・」の部分
+                        .indexViewStyle(
+                            .page(backgroundDisplayMode: .always)
+                        )
+                )
+                .border(Color.black)
+            
+            if image == "プランク" ||  image == "バックプランク" {
                 // 四角形の描画
                 Rectangle()
                     .fill(Color.white)
                 // 図形の塗りつぶしに使うViewを指定
                     .frame(width:300, height: 120)
-                    .overlay(Text("\(settingViewModel.selectedSet[num])セット × \(settingViewModel.selectedPlay[num])")
+                    .overlay(Text("\(settingViewModel.set[num])セット × \(settingViewModel.play[num])秒")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.black)
                     )
                     .border(Color.black)
                 
+            } else  {
+                // 四角形の描画
+                Rectangle()
+                    .fill(Color.white)
+                // 図形の塗りつぶしに使うViewを指定
+                    .frame(width:300, height: 120)
+                    .overlay(Text("\(settingViewModel.set[num])セット × \(settingViewModel.play[num])回")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundColor(.black)
+                    )
+                    .border(Color.black)
+            }
                 Spacer()
                 
                 Button {

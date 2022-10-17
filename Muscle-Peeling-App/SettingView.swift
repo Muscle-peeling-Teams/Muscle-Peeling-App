@@ -34,8 +34,8 @@ struct SettingView: View {
                       "41","42","43","44","45","46","47","48","49","50",
                       "51","52","53","54","55","56","57","58","59","60",
                       "61","62","63","64","65","66","67","48","49","50",
-                      "71","72","73","44","45","46","47","48","49","50",
-                      "81","82","43","44","45","46","47","48","49","50",
+                      "71","72","73","74","75","76","77","78","79","80",
+                      "81","82","83","84","85","86","87","88","89","90",
                       "91","92","93","94","95","96","97","98","99","100",
                       "101","102","103","104","105","106","107","108","109","110",
                       "111","112","113","114","115","116","117","118","119","120",
@@ -326,7 +326,19 @@ struct SettingView: View {
                     dismiss()
                     for i in 0..<6 {
                         viewModel.set[i] = viewModel.selectedSet[i] + 1
+                        viewModel.play[i] = viewModel.selectedPlay[i] + 1
                     }
+                    plankViewModel.setMaxCount = viewModel.SetTraining(num: 0)
+                    plankViewModel.maxPlankTime = Double(viewModel.CountTraining(num: 0))
+                    
+                    backPlankViewModel.setMaxCount = viewModel.SetTraining(num: 1)
+                    backPlankViewModel.setCount = viewModel.CountTraining(num: 1)
+                    bulgarianSquatViewModel.setMaxCount = viewModel.SetTraining(num: 2)
+                    bulgarianSquatViewModel.maxCount = viewModel.SetTraining(num: 2)
+                    absViewModel.setMaxCount = viewModel.SetTraining(num: 4)
+                    absViewModel.setCount = viewModel.CountTraining(num: 4)
+                    pushUpViewModel.settingCount = viewModel.CountTraining(num: 5)
+                    pushUpViewModel.settingSetCount = viewModel.SetTraining(num: 5)
                 }){
                     Text("    選択")
                         .foregroundColor(Color.white)

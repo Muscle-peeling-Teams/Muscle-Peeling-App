@@ -14,13 +14,19 @@ class MenuViewModel: ObservableObject {
     let rightMenu = ["バックプランク","腕立て"]
     
     func selectNumber(image: String)-> Int{
-        var num = 0
-        if image == "プランク" {
+        var num = 4
+        if image == "腕立て" {
+            num = 5
+        }else if image == "プランク" {
             num = 0
-        } else if image == "バッグプランク" {
+        }else if image == "ブルガリアンスクワット"{
+            num = 2
+        }else if image == "バックプランク"{
             num = 1
-        } else {
-            
+        }else if image == "腹筋"{
+            num = 4
+        }else{
+            //処理なし
         }
         return num
     }
