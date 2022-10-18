@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7F5A8B1028FE649500F5C275 /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F5A8B0F28FE649500F5C275 /* BackPlankView.swift */; };
 		D08AF2C528D1ECCA00250045 /* PlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C328D1ECCA00250045 /* PlankView.swift */; };
 		D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */; };
 		D08AF2CE28D1EE0F00250045 /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D08AF2CC28D1EE0F00250045 /* MenuView.swift */; };
@@ -17,7 +18,6 @@
 		D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */; };
 		D096C59028D4AC5B00D6747C /* PushUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C58E28D4AC5B00D6747C /* PushUpView.swift */; };
 		D096C59328D4B86400D6747C /* BackPlankManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59128D4B86400D6747C /* BackPlankManager.swift */; };
-		D096C59428D4B86400D6747C /* BackPlankView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59228D4B86400D6747C /* BackPlankView.swift */; };
 		D096C59828D4B92800D6747C /* BulgarianView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59628D4B92800D6747C /* BulgarianView.swift */; };
 		D096C59928D4B92800D6747C /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D096C59728D4B92800D6747C /* ViewModel.swift */; };
 		D0A2E6A728FA49920099A96E /* AbsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0A2E6A528FA49920099A96E /* AbsView.swift */; };
@@ -30,6 +30,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7F5A8B0F28FE649500F5C275 /* BackPlankView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
 		D08AF2C328D1ECCA00250045 /* PlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankView.swift; sourceTree = "<group>"; };
 		D08AF2C428D1ECCA00250045 /* PlankViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlankViewManager.swift; sourceTree = "<group>"; };
 		D08AF2CC28D1EE0F00250045 /* MenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		D096C58D28D4AC5B00D6747C /* PushUpMotionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpMotionManager.swift; sourceTree = "<group>"; };
 		D096C58E28D4AC5B00D6747C /* PushUpView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PushUpView.swift; sourceTree = "<group>"; };
 		D096C59128D4B86400D6747C /* BackPlankManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankManager.swift; sourceTree = "<group>"; };
-		D096C59228D4B86400D6747C /* BackPlankView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackPlankView.swift; sourceTree = "<group>"; };
 		D096C59628D4B92800D6747C /* BulgarianView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BulgarianView.swift; sourceTree = "<group>"; };
 		D096C59728D4B92800D6747C /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D0A2E6A528FA49920099A96E /* AbsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AbsView.swift; sourceTree = "<group>"; };
@@ -86,7 +86,7 @@
 			isa = PBXGroup;
 			children = (
 				D096C59128D4B86400D6747C /* BackPlankManager.swift */,
-				D096C59228D4B86400D6747C /* BackPlankView.swift */,
+				7F5A8B0F28FE649500F5C275 /* BackPlankView.swift */,
 			);
 			path = BackPlank;
 			sourceTree = "<group>";
@@ -231,8 +231,8 @@
 				D0BA2F5128B48F7C00A2EE72 /* ContentView.swift in Sources */,
 				D08AF2D128D1EEBF00250045 /* MenuViewModel.swift in Sources */,
 				D0A2E6A828FA49920099A96E /* AbsViewManager.swift in Sources */,
+				7F5A8B1028FE649500F5C275 /* BackPlankView.swift in Sources */,
 				D0A2E6AA28FA55350099A96E /* ReadyViewModel.swift in Sources */,
-				D096C59428D4B86400D6747C /* BackPlankView.swift in Sources */,
 				D08AF2C628D1ECCA00250045 /* PlankViewManager.swift in Sources */,
 				D08AF2D328D1EECC00250045 /* SettingViewModel.swift in Sources */,
 				D096C58F28D4AC5B00D6747C /* PushUpMotionManager.swift in Sources */,
@@ -371,7 +371,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = MW8JTL62A9;
+=======
+				DEVELOPMENT_TEAM = 7Y48X5M9DX;
+>>>>>>> 1ee150d (no message)
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -385,7 +389,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleAppj;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.jec.cm.MuscleApp---y--t---";
+>>>>>>> 1ee150d (no message)
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -404,7 +412,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
+<<<<<<< HEAD
 				DEVELOPMENT_TEAM = MW8JTL62A9;
+=======
+				DEVELOPMENT_TEAM = 7Y48X5M9DX;
+>>>>>>> 1ee150d (no message)
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -418,7 +430,11 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
+<<<<<<< HEAD
 				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleAppj;
+=======
+				PRODUCT_BUNDLE_IDENTIFIER = "jp.ac.jec.cm.MuscleApp---y--t---";
+>>>>>>> 1ee150d (no message)
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
