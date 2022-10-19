@@ -371,20 +371,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 				DEVELOPMENT_TEAM = MW8JTL62A9;
 
-=======
-				DEVELOPMENT_TEAM = ZSB7MBDU56;
->>>>>>> 03ddff6 (no message)
-=======
-				DEVELOPMENT_TEAM = MW8JTL62A9;
-=======
-				DEVELOPMENT_TEAM = ZSB7MBDU56;
->>>>>>> origin/main
->>>>>>> origin/main
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -392,30 +382,16 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-<<<<<<< HEAD
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
->>>>>>> origin/main
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
-<<<<<<< HEAD
-<<<<<<< HEAD
 
 				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleAppj;
 
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp;
->>>>>>> 03ddff6 (no message)
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp1k;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp;
->>>>>>> origin/main
->>>>>>> origin/main
+
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -434,20 +410,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Muscle-Peeling-App/Preview Content\"";
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 				DEVELOPMENT_TEAM = MW8JTL62A9;
 
-=======
-				DEVELOPMENT_TEAM = ZSB7MBDU56;
->>>>>>> 03ddff6 (no message)
-=======
-				DEVELOPMENT_TEAM = MW8JTL62A9;
-=======
-				DEVELOPMENT_TEAM = ZSB7MBDU56;
->>>>>>> origin/main
->>>>>>> origin/main
+
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -455,30 +422,18 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-<<<<<<< HEAD
+
 				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
-=======
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
->>>>>>> origin/main
+
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 
 				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleAppj;
 
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp;
->>>>>>> 03ddff6 (no message)
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp1j;
-=======
-				PRODUCT_BUNDLE_IDENTIFIER = jp.ac.jec.cm.MuscleApp;
->>>>>>> origin/main
->>>>>>> origin/main
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
