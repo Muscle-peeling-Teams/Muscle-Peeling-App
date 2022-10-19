@@ -51,8 +51,13 @@ final class MotionManager: ObservableObject{
     var pauseTimer: Timer?
     @Published var count = 0
     
+<<<<<<< HEAD
     var setCount = 10
     var setcount = 1
+=======
+    var maxcount = 10
+    var setcount = 0
+>>>>>>> origin/main
     var maxsetcount = 3
     
     var daicount = 1
