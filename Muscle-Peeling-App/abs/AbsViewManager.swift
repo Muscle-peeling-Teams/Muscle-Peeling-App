@@ -153,6 +153,7 @@ final class MotionManager: ObservableObject{
             daicount = 1
             
             
+            
             kairosu = 1
             trainingSucess = 3
             // 終了
