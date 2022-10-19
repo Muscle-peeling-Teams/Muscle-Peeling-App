@@ -9,7 +9,7 @@ struct BulgarianView: View {
                 Spacer()
                 Text("第\(viewModel.setCount)セット \((viewModel.num))回目")
                     .font(.largeTitle)
-                
+
                 Image("plank")
                     .resizable()
                     .frame(width: 300, height: 300)
