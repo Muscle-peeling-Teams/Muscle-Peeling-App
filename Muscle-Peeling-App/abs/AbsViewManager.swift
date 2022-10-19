@@ -131,6 +131,9 @@ final class MotionManager: ObservableObject{
     
     // トレーニング（制限時間式）
     func trainingTime() {
+        
+        
+        
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             if self.count >= self.setCount {
                 self.trainingSucess = 2
