@@ -331,15 +331,16 @@ struct SettingView: View {
                     plankViewModel.setMaxCount = viewModel.SetTraining(num: 0)
                     plankViewModel.maxPlankTime = Double(viewModel.CountTraining(num: 0))
                     
-<<<<<<< HEAD
+
                     backPlankViewModel.setCount = viewModel.SetTraining(num: 1)
                     backPlankViewModel.backplankTime = Double(viewModel.CountTraining(num: 1))
-=======
+
                     backPlankViewModel.setMaxCount = viewModel.SetTraining(num: 1)
                     backPlankViewModel.setCount = viewModel.CountTraining(num: 1)
->>>>>>> origin/main
-                    bulgarianSquatViewModel.setMaxCount = viewModel.SetTraining(num: 2)
-                    bulgarianSquatViewModel.maxCount = viewModel.SetTraining(num: 2)
+
+                    bulgarianSquatViewModel.maxStage = viewModel.SetTraining(num: 2)
+                    bulgarianSquatViewModel.everyStageCount = viewModel.SetTraining(num: 2)
+                    
                     absViewModel.setMaxCount = viewModel.SetTraining(num: 4)
                     absViewModel.setCount = viewModel.CountTraining(num: 4)
                     pushUpViewModel.settingCount = viewModel.CountTraining(num: 5)

@@ -23,22 +23,13 @@ class MenuViewModel: ObservableObject {
             num = 2
         }else if image == "バックプランク"{
             num = 1
-<<<<<<< HEAD
+
         }else if image == "腹筋"{
             num = 4
         }else{
             //処理なし
-=======
-        } else if image == "ブルガリアンスクワット"{
-            num = 2
-        } else if image == "スクワット" {
-            num = 3
-        } else if image == "腹筋" {
-            num = 4
-        } else if image == "腕立て" {
-            num = 5
->>>>>>> origin/main
         }
+
         return num
     }
 }

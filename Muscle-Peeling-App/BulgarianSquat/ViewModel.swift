@@ -9,279 +9,124 @@ import CoreMotion
 import SwiftUI
 import AVFoundation
 class SquatViewModel : ObservableObject {
-    //次数
-    
-    
+    //staticでインスタンスを保持しておく
     // MotionManager.sharedでアクセスができる
-   static let shared: SquatViewModel = .init()
-    // privateのletでCMMotionManagerインスタンスを作成する
-    private let motion = CMMotionManager()
-
+    static let shared: SquatViewModel = .init()
+    //privateのletでCMMotionManagerインスタンスを作成する
     private let queue = OperationQueue()
-
-    var backColor = Color.white
-
+    private let motionManager = CMMotionManager()
     // 音声
-    private var speechSynthesizer : AVSpeechSynthesizer!
-
-
-    // トレーニングを行えているか
-    @Published var trainingSucess = 0
-
-    @Published var plankTime = 5.0
-
-    var systemImage = "xmark"
-
-    // センサーの値
-    var x = 0.00
-    var y = 0.00
-    var z = 0.00
-
-    @Published var setCount = 1
-    var setMaxCount = 3
-
-    // トレーニング時のボタンを透明にする
-    @Published var buttonOpacity = true
-
-    @Published var countDown = 5
-
-    var timer: Timer?
-    var trainingTimer: Timer?
-    var speakTimer: Timer?
-    var stopSpeacTimer: Timer?
-    var pauseTimer: Timer?
-
+    private var speechSynthesizer = AVSpeechSynthesizer()
+    //カウントダウンの部分、初期値は5秒
+    private var countDown = 5
+    //設定セット数
+    public var maxStage = 3
+    //設定回数
+    public var everyStageCount = 10
+    //現在が何セット目かを示す部分
+    @Published public  var currentStageIndex = 1
+    //現在が何回目かを示す部分
+    @Published public  var currentStageLeaveCount = 10
+    //現在のステージ(直訳) 当前阶段 0,1,2
+    private var stage: Int = 0
+    //新たな下支えサイクルなのか(直訳) 是不是新的一个撑起周期
+    private var newAction = true
+    //？？？
+    private var lastTime:Double = Date().timeIntervalSince1970
+    //周期的閾値（調整可能）(直訳) 周期阀值 (可以调节)
+    private let threshold_high = 1.5
+    //サイクル閾値(直訳) 周期阀值
+    private let threshold_low = 0.5
+    //スクワットの間隔は0.3秒以上でなければならない(直訳) 两次下蹲时间间隔必须大于0.3s
+    private let timeInterval:Double = 0.3
+    //？？？
+    private var lastList = [Double]()
+    //時間測定関連
+    private var prepareTimer: Timer?
+    private var trainingTimer: Timer?
+    //トレーニング準備の判定
+    private var isPrepareIng = true
+    //トレーニングの一時停止判定
+    private var isPauseIng = false
+    //トレーニングの終了判定
+    public var isFinished = false
+    
     // シングルトンにするためにinitを潰す
     private init() {}
-
-    func startQueuedUpdates() {
-        // ジャイロセンサーが使えない場合はこの先の処理をしない
-        guard motion.isDeviceMotionAvailable else { return }
-        
-        // 更新感覚
-        motion.deviceMotionUpdateInterval = 6.0 / 60.0 // 0.1秒間隔
-        
-        // 加速度センサーを利用して値を取得する
-        // 取ってくるdataの型はCMAcccerometterData?になっている
-        motion.startDeviceMotionUpdates(to: queue) { data, error in
-            // dataはオプショナル型なので、安全に取り出す
-            if let validData = data {
-                DispatchQueue.main.async {
-                    self.x = validData.gravity.x
-                    self.y = validData.gravity.y
-                    self.z = validData.gravity.z
-                }
-            }
-        }
-    }
-
-    // カウントダウン
-    func startTimer() {
-        self.countDown = 5
-        self.speeche(text: String(self.countDown))
-        timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-            
-            self.countDown -= 1
-            self.speeche(text: String(self.countDown))
-            print("\(self.countDown)")
-            if self.countDown <= 0 {
-                self.timer?.invalidate()
-                self.buttonOpacity.toggle()
-                // TODO: 複数対応できるように変更
-                self.plank()
-            }
-        }
-    }
-
-    // プランク
-    func plank() {
-        speakTimes()
-        speeche(text: "スタート")
-        startQueuedUpdates()
-        
-        trainingTime()
-    }
-
-    // トレーニング（制限時間式）
-    func trainingTime() {
-        trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            print("print\(self.setCount)")
-            self.plankTime -= 0.1
-            print("\(self.plankTime)")
-            if self.plankTime <= 0.0 {
-                self.trainingSucess = 2
-                if (self.setCount <= self.setMaxCount) {
-                    self.pauseTraining()
-                } else {
-                    self.stopTraining()
-                }
-            }
-        }
-        
-        
-        
-    }
-
-    func pauseTraining() {
-        if trainingSucess == 0 {
-            self.speechSynthesizer.pauseSpeaking(at: .word)
-            print("一時停止")
-            self.trainingTimer?.invalidate()
-            self.speakTimer?.invalidate()
-            self.stopSpeacTimer?.invalidate()
-            speechSynthesizer.pauseSpeaking(at: .word)
-            speeche(text: "一時停止します")
-            trainingSucess = 1
-        } else if trainingSucess == 1 {
-            self.speechSynthesizer.pauseSpeaking(at: .word)
-            print("再開")
-            speechSynthesizer.pauseSpeaking(at: .word)
-            speeche(text: "再開します")
-            if !speechSynthesizer.isSpeaking {
-                plank()
-                trainingSucess = 0
-            }
-        } else {
-            self.motion.stopDeviceMotionUpdates()
-            self.trainingTimer?.invalidate()
-            self.speakTimer?.invalidate()
-            self.stopSpeacTimer?.invalidate()
-            speechSynthesizer.pauseSpeaking(at: .word)
-            speeche(text: "第\(setCount)セット終了")
-            var pause = 10
-            pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
-                pause -= 1
-                if pause <= 5 {
-                    self.speeche(text: String(pause))
-                    if pause <= 0 {
-                        self.pauseTimer?.invalidate()
-                        self.trainingSucess = 0
-                        self.plankTime = 5.0
-                        self.plank()
-                    }
-                }
-            }
-        }
-    }
-
-    // トレーニング終了
-    func stopTraining() {
-        // 終了
-        
-        self.motion.stopDeviceMotionUpdates()
-        self.trainingTimer?.invalidate()
-        self.speakTimer?.invalidate()
-        self.stopSpeacTimer?.invalidate()
-        plankTime = 60.0
-        setCount = 1
-        speechSynthesizer.pauseSpeaking(at: .word)
-        speeche(text: "お疲れさまでした")
-        buttonOpacity.toggle()
-        print("終了")
-    }
-
-    // 音声作動範囲
-    func speakTimes() {
-        speakTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            if self.x >= -0.08 {
-                // TODO: 複数対応できるようにadviceとsucessの部分を配列で読ませる
-                self.adviceSensor(advice: "もう少し腰を下げましょう", sucess: "その位置です")
-            } else if self.x <= -0.12 {
-                // TODO: 複数対応できるようにadviceとsucessの部分を配列で読ませる
-                self.adviceSensor(advice: "もう少し腰を上げましょう", sucess: "その位置です")
-            }
-        }
-    }
-
-    // 音声指導
-    func adviceSensor(advice: String, sucess: String) {
-        self.speakTimer?.invalidate()
-        self.speeche(text: advice)
-        self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            // 複数の値に対応できるようにする
-            if self.x <= -0.08 && self.x >= -0.12 {
-                // 現在音声が動作中か
-                if self.speechSynthesizer.isSpeaking {
-                    self.speechSynthesizer.pauseSpeaking(at: .word)
-                }
-                self.speeche(text: sucess)
-            }
-            if !self.speechSynthesizer.isSpeaking {
-                self.stopSpeacTimer?.invalidate()
-                self.speakTimes()
-            }
-        }
-    }
-
-    // 自動音声機能
-    func speeche(text: String) {
-        
-        // AVSpeechSynthesizerのインスタンス作成
-        speechSynthesizer = AVSpeechSynthesizer()
-        // 読み上げる、文字、言語などの設定
-        let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
-        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
-        utterance.rate = 0.5 // 読み上げ速度
-        utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
-        utterance.preUtteranceDelay = 0.0
-        speechSynthesizer.speak(utterance)
-    }
-
-
-    @Published var num = 0
-    var newAction = true //是不是新的一个撑起周期
-    var lastTime:Double = Date().timeIntervalSince1970
-    let threshold_high = 1.5 //周期阀值 (可以调节)
-    let threshold_low = 0.5 //周期阀值
-    let timeInterval:Double = 0.3 //两次下蹲时间间隔必须大于0.3s
-    var lastList = [Double]()
-    let motionManager = CMMotionManager()
-    var maxCount = 10
     
-    func  start() {
-        self.num = 0
-        lastList.removeAll()
-        newAction = true
-        if motionManager.isAccelerometerAvailable == false {
-            print("不支持加速计")
-            return
-        }
-        let queue = OperationQueue()
-        //使用代码块开始获取加速度数据
-        self.motionManager.startAccelerometerUpdates(to: queue) { accelerometerData, error in
-            if error != nil{
-                self.stop()
-                print("获取加速度数据出现错误：\(error.debugDescription)")
-                
+    // カウントダウン
+    //１：メニューからの遷移時に稼働、6秒前からスタートして5秒前からカウント
+    func startPrepareTimer() {
+        self.isPrepareIng = true
+        self.countDown = 6
+        prepareTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            
+            if self.isFinished{
+                self.prepareTimer?.invalidate()
                 return
             }
-            if let accelerometerData = accelerometerData{
-                // print("加速度为\n------\nX轴：\(accelerometerData.acceleration.x) \nY轴：\(accelerometerData.acceleration.y) \nZ 轴：\(accelerometerData.acceleration.z)")
-                let full = (accelerometerData.acceleration.x * accelerometerData.acceleration.x) + (accelerometerData.acceleration.y * accelerometerData.acceleration.y) + (accelerometerData.acceleration.z * accelerometerData.acceleration.z)
-                // 取平方根计算综合加速度
-                let acceleration = sqrt(full)
-                self.operationing(acceleration: acceleration)
-                
+            self.countDown -= 1
+            print("\(self.countDown)")
+            
+            if self.countDown <= 0 {
+                self.isPrepareIng = false
+                self.prepareTimer?.invalidate()
+                self.startSquat()
             }else{
-                print("无加速度数据")
+                self.speeche(text: String(self.countDown))
             }
-            
-            
         }
     }
     
-    func stop()  {
-        self.motionManager.stopAccelerometerUpdates()
+    //２：カウントダウンの0に合わせて稼働、
+    func  startSquat() {
+        self.speeche(text: "開始")
+        self.currentStageIndex = 1
+        self.currentStageLeaveCount = everyStageCount
+        lastList.removeAll()
+        newAction = true
+        isFinished = false
+        continueSquat()
+    }
+    
+    func continueSquat() {
+        if motionManager.isAccelerometerAvailable == false {
+            speeche(text: "不支持陀螺仪")//ジャイロスコープ非対応(直訳)
+            return
+        }
+        //使用代码块开始获取加速度数据
+        //加速度データの取得を開始するためのコードブロックです。(直訳）
+        self.motionManager.startAccelerometerUpdates(to: queue) { accelerometerData, error in
+            // accelerometerDataはオプショナル型なので、安全に取り出す
+            if error != nil{
+                self.motionManager.stopAccelerometerUpdates()
+                //エラーが発生しました(直訳)
+                self.speeche(text: "发生错误")
+                //加速度データの取得エラー(直訳)
+                print("获取加速度数据出现错误：\(error.debugDescription)")
+                return
+            }
+            
+            if let accelerometerData = accelerometerData{
+                let full = (accelerometerData.acceleration.x * accelerometerData.acceleration.x) + (accelerometerData.acceleration.y * accelerometerData.acceleration.y) + (accelerometerData.acceleration.z * accelerometerData.acceleration.z)
+                // 取平方根计算综合加速度
+                //平方根をとって合成加速度を計算する(直訳）
+                let acceleration = sqrt(full)
+                self.operationing(acceleration: acceleration)
+            }else{
+                //加速度データなし
+                print("无加速度数据")
+            }
+        }
     }
     
     func operationing(acceleration:Double)   {
-        // print(acceleration)
-        //剔除异常数据
-        //前9个平均值
+        //剔除异常数据(異常値データを除く)
+        //前9个平均值(第1～9回平均)
         let average = lastList.reduce(0, {$0+$1})/Double((lastList.count))
-        // comparison 剔除加速度明显过快或者过慢 (正常0,)
+        // comparison 剔除加速度明显过快或者过慢 (明らかに速すぎたり遅すぎたりする加速度は拒否されます)
         let comparison:Double = 5
-        //平均值与当前值比较,不能相差太大
+        //平均值与当前值比较,不能相差太大(平均値が現在値と大きく異ならないこと)
         if lastList.count >= 9 && abs(average - acceleration) > comparison{
             print("异常数据")
             return
@@ -298,24 +143,101 @@ class SquatViewModel : ObservableObject {
                 let currentTime = Date().timeIntervalSince1970
                 if  currentTime - lastTime > timeInterval{
                     DispatchQueue.main.async {
-                        self.num += 1
+                        
+                        self.finishOneAction()
                     }
-                    
-                    print("完成一个动作:\(self.num)")
                     newAction = false
                 }
                 lastTime = Date().timeIntervalSince1970
             }
         }
         
-        // 周期的开始
+        // 周期的开始(サイクルの始まり)
         if acceleration <= threshold_low && !newAction {
             newAction = true
         }
-        
-        if lastList.count >= maxCount {
+        if lastList.count >= 10 {
             lastList.remove(at: 0)
         }
+    }
+    
+    func finishOneAction()  {
+        speechSynthesizer.pauseSpeaking(at: .immediate)
+        self.speeche(text: "上げてください")
+        //アクションを完了させる(直訳)
+        print("完成一个动作:\(self.currentStageLeaveCount)")
+        self.currentStageLeaveCount -= 1
+        if self.currentStageLeaveCount <= 0{
+            // 完成一个阶段（フェーズを完了する）
+            self.currentStageLeaveCount = self.everyStageCount
+            if self.currentStageIndex >= self.maxStage {
+                // 结束（終了）
+                speechSynthesizer.pauseSpeaking(at: .immediate)
+                self.overTraining()
+                print("おわり")
+            }else{
+                // 下一个阶段（次のステージ）
+                speechSynthesizer.pauseSpeaking(at: .immediate)
+                self.speeche(text: "つぎのセットをはじめます")
+                print("次の段階")
+                self.currentStageIndex += 1
+            }
+        }
+    }
+    
+    //暂停
+    //サスペンション(直訳)、多分一時停止だと思うが、コードが。。。
+    func pauseTraining() {
+        if isPrepareIng {
+            return
+        }
+        isPauseIng = !isPauseIng
+        if isPauseIng {
+            self.motionManager.stopAccelerometerUpdates()
+            speechSynthesizer.pauseSpeaking(at: .immediate)
+            speeche(text: "一時停止します")
+            
+        }else{
+            self.continueSquat()
+            speechSynthesizer.pauseSpeaking(at: .immediate)
+            speeche(text: "再開します")
+        }
+    }
+    
+    // 停止
+    func stopTraining() {
+        if isPrepareIng {
+            return
+        }
+        self.motionManager.stopAccelerometerUpdates()
+        self.isFinished = true
+        self.currentStageIndex = 1
+        self.currentStageLeaveCount = everyStageCount
+        lastList.removeAll()
+        newAction = false
+    }
+    
+    func overTraining() {
+        isFinished = true
+        self.motionManager.stopAccelerometerUpdates()
+        self.currentStageIndex = 1
+        self.currentStageLeaveCount = everyStageCount
+        speechSynthesizer.pauseSpeaking(at: .immediate)
+        self.speeche(text: "お疲れさまでした")
+    }
+    
+    // 自動音声機能
+    func speeche(text: String) {
+        // AVSpeechSynthesizerのインスタンス作成
+        speechSynthesizer = AVSpeechSynthesizer()
+        // 読み上げる、文字、言語などの設定
+        let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
+        utterance.rate = 0.5 // 読み上げ速度
+        utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
+        utterance.preUtteranceDelay = 0.0
+        speechSynthesizer.speak(utterance)
+        print("说的是:\(text)")
     }
 }
 

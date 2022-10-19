@@ -35,14 +35,14 @@ final class PushUpMotionManager: ObservableObject{
     @Published var countDown = 5
     // トレーニング時のボタンを透明にする
     @Published var buttonOpacity = true
-<<<<<<< HEAD
+
     //トレーニング終了判定
     @Published var trainingFinished = false
     //メニューへ戻るボタンの表示判定
     @Published var finishActionButton = false
     //一時停止用の判定変数
     @Published var pauseNum = 3
-=======
+
     //Pushup用の画像を変数に含める(受け渡しがうまく行かず現在未使用。設定用のクラスとかに収める可能性大)
     @Published var pushupImage1 = "pushup1"
     @Published var pushupImage2 = "pushup2"
@@ -50,7 +50,7 @@ final class PushUpMotionManager: ObservableObject{
     @Published var pushupTalk1 = "下の図の場所に装着してください"
     @Published var pushupTalk2 = "背中から足までを真っ直ぐ保ちましょう"
     @Published var pushupTalk3 = "お尻の高さを維持しましょう"
->>>>>>> e188086 (0917_終了画面への処理を追加)
+
     
     // センサーの値
     var x = 0.00
@@ -126,28 +126,6 @@ final class PushUpMotionManager: ObservableObject{
         self.sensorjudge = false
         self.startQueuedUpdates()
         self.pushUpCount()
-        
-//        時間制の休憩は廃止
-//        var pauseTime = 10
-//        pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){_ in
-//            pauseTime -= 1
-//
-//            if pauseTime <= 5 {
-//                if pauseTime > 0 {
-//                    self.speeche(text: String(pauseTime))
-//                }
-//
-//                if pauseTime <= 0{
-//                    self.speechSynthesizer.pauseSpeaking(at: .word)
-//                    self.speakTimes(SensorJudge:self.sensorjudge)
-//                    self.speeche(text: "再開してください")
-//                    self.pauseTimer?.invalidate()
-//                    self.sensorjudge = false
-//                    self.startQueuedUpdates()
-//                    self.pushUpCount()
-//                }
-//            }
-//        }
     }
     
     // トレーニング（回数式）
