@@ -28,7 +28,7 @@ final class PlankViewModel: ObservableObject{
     @Published var trainingSucess = 3
     
     @Published var plankTime = 0.0
-    @Published var maxPlankTime = 10.0
+    @Published var maxPlankTime = 60.0
     
     var trainingFinish = false
     
@@ -91,6 +91,8 @@ final class PlankViewModel: ObservableObject{
                 self.buttonOpacity.toggle()
                 // TODO: 複数対応できるように変更
                 self.plank()
+                self.trainingSucess = 0
+                self.plankTime = self.maxPlankTime
             }
         }
     }
@@ -98,7 +100,7 @@ final class PlankViewModel: ObservableObject{
     // プランク
     func plank() {
         speakTimes()
-        plankTime = maxPlankTime
+        
         speeche(text: "スタート")
         startQueuedUpdates()
         
@@ -151,6 +153,7 @@ final class PlankViewModel: ObservableObject{
             self.stopSpeacTimer?.invalidate()
             speechSynthesizer.pauseSpeaking(at: .word)
             speeche(text: "第\(setCount)セット終了")
+            trainingSucess = 3
             var pause = 10
             plankTime = maxPlankTime
             setCount += 1
@@ -173,18 +176,20 @@ final class PlankViewModel: ObservableObject{
     // トレーニング終了
     func stopTraining() {
         // 終了
-        trainingSucess = 3
-        self.motion.stopDeviceMotionUpdates()
-        self.trainingTimer?.invalidate()
-        self.speakTimer?.invalidate()
-        self.stopSpeacTimer?.invalidate()
-        plankTime = maxPlankTime
-        setCount = 1
-        trainingFinish = true
-        speechSynthesizer.pauseSpeaking(at: .word)
-        speeche(text: "お疲れさまでした")
-        buttonOpacity.toggle()
-        print("終了")
+        if trainingSucess != 3 {
+            trainingSucess = 3
+            self.motion.stopDeviceMotionUpdates()
+            self.trainingTimer?.invalidate()
+            self.speakTimer?.invalidate()
+            self.stopSpeacTimer?.invalidate()
+            plankTime = maxPlankTime
+            setCount = 1
+            trainingFinish = true
+            speechSynthesizer.pauseSpeaking(at: .word)
+            speeche(text: "お疲れさまでした")
+            buttonOpacity.toggle()
+            print("終了")
+        }
     }
     
     // 音声作動範囲

@@ -26,6 +26,8 @@ final class MotionManager: ObservableObject{
     // トレーニングを行えているか
     @Published var trainingSucess = 3
     
+    @Published var kairosu = 0
+    
     var systemImage = "xmark"
     
     // センサーの値
@@ -34,7 +36,6 @@ final class MotionManager: ObservableObject{
     var z = 0.00
     
     
-    @Published var setCount = 1
     var setMaxCount = 3
     
     
@@ -50,8 +51,13 @@ final class MotionManager: ObservableObject{
     var pauseTimer: Timer?
     @Published var count = 0
     
+<<<<<<< HEAD
+    var setCount = 10
+    var setcount = 1
+=======
     var maxcount = 10
     var setcount = 0
+>>>>>>> origin/main
     var maxsetcount = 3
     
     var daicount = 1
@@ -130,8 +136,11 @@ final class MotionManager: ObservableObject{
     
     // トレーニング（制限時間式）
     func trainingTime() {
+        
+        
+        
         trainingTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-            if self.count >= self.maxcount {
+            if self.count >= self.setCount {
                 self.trainingSucess = 2
                 self.setcount += 1
                 self.daicount += 1
@@ -146,15 +155,24 @@ final class MotionManager: ObservableObject{
     
     // トレーニング終了
     func stopTraining() {
-        trainingSucess = 3
-        // 終了
-        self.motion.stopDeviceMotionUpdates()
-        self.trainingTimer?.invalidate()
-        self.speakTimer?.invalidate()
-        self.stopSpeacTimer?.invalidate()
-        self.speeche(text: "終了")
-        self.buttonOpacity.toggle()
-        print("終了")
+        if trainingSucess != 3{
+            count = 0
+            setcount = 1
+            daicount = 1
+            
+            
+            
+            kairosu = 1
+            trainingSucess = 3
+            // 終了
+            self.motion.stopDeviceMotionUpdates()
+            self.trainingTimer?.invalidate()
+            self.speakTimer?.invalidate()
+            self.stopSpeacTimer?.invalidate()
+            self.speeche(text: "終了")
+            self.buttonOpacity.toggle()
+            print("終了")
+        }
     }
 
     // 音声作動範囲
@@ -265,6 +283,7 @@ final class MotionManager: ObservableObject{
             }
         } else if trainingSucess == 2{
             count = 0
+            trainingSucess = 3
             self.motion.stopDeviceMotionUpdates()
             self.trainingTimer?.invalidate()
             self.speakTimer?.invalidate()

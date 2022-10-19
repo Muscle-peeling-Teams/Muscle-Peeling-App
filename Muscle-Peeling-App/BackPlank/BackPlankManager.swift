@@ -9,10 +9,10 @@ import CoreMotion
 import SwiftUI
 import AVFoundation
 
-final class BackPlankManager: ObservableObject{
+final class BackPlankViewModel: ObservableObject{
     // staticでインスタンスを保持しておく
     // MotionManager.sharedでアクセスができる
-    static let shared: BackPlankManager = .init()
+    static let shared: BackPlankViewModel = .init()
     // privateのletでCMMotionManagerインスタンスを作成する
     private let motion = CMMotionManager()
     
@@ -24,8 +24,10 @@ final class BackPlankManager: ObservableObject{
     private var speechSynthesizer: AVSpeechSynthesizer!
     
     // トレーニングを行えているか
-    @Published var trainingSucess = 0
-    @Published var backplankTime = 5.0
+    @Published var trainingSucess = 3
+    @Published var backplankTime = 0.0
+    @Published var maxbackplankTime = 60.0
+    var trainingFinish = false
     
     var systemImage = "xmark"
     
@@ -36,6 +38,7 @@ final class BackPlankManager: ObservableObject{
     
     @Published var setCount = 1
     var setMaxCount = 3
+    
     
     // トレーニング時のボタンを透明にする
     @Published var buttonOpacity = true
@@ -68,9 +71,6 @@ final class BackPlankManager: ObservableObject{
                     self.y = validData.gravity.y
                     self.z = validData.gravity.z
                 }
-                print("x: \(self.x)")
-                print("y: \(self.y)")
-                print("z: \(self.z)")
             }
         }
     }
@@ -78,14 +78,19 @@ final class BackPlankManager: ObservableObject{
     // カウントダウン
     func startTimer() {
         self.countDown = 5
+        self.speeche(text: String(self.countDown))
         timer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
+            
             self.countDown -= 1
+            self.speeche(text: String(self.countDown))
             print("\(self.countDown)")
             if self.countDown <= 0 {
                 self.timer?.invalidate()
                 self.buttonOpacity.toggle()
                 // TODO: 複数対応できるように変更
                 self.backplank()
+                self.trainingSucess = 0
+                self.backplankTime = self.maxbackplankTime
             }
         }
     }
@@ -107,10 +112,10 @@ final class BackPlankManager: ObservableObject{
             print("\(self.backplankTime)")
             if self.backplankTime <= 0.0 {
                 self.trainingSucess = 2
-                if (self.setCount <= self.setMaxCount) {
-                    self.pauseTraining()
-                } else {
+                if (self.setCount >= self.setMaxCount) {
                     self.stopTraining()
+                } else {
+                    self.pauseTraining()
                 }
             }
         }
@@ -138,14 +143,17 @@ final class BackPlankManager: ObservableObject{
                 backplank()
                 trainingSucess = 0
             }
-        } else {
+        } else if trainingSucess == 2{
             self.motion.stopDeviceMotionUpdates()
             self.trainingTimer?.invalidate()
             self.speakTimer?.invalidate()
             self.stopSpeacTimer?.invalidate()
             speechSynthesizer.pauseSpeaking(at: .word)
             speeche(text: "第\(setCount)セット終了")
+            trainingSucess = 3
             var pause = 10
+            backplankTime = maxbackplankTime
+            setCount += 1
             pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { _ in
                 pause -= 1
                 if pause <= 5 {
@@ -153,24 +161,32 @@ final class BackPlankManager: ObservableObject{
                     if pause <= 0 {
                         self.pauseTimer?.invalidate()
                         self.trainingSucess = 0
-                        self.backplankTime = 5.0
                         self.backplank()
                     }
                 }
             }
+        } else {
+            
         }
     }
     
     // トレーニング終了
     func stopTraining() {
         // 終了
-        self.motion.stopDeviceMotionUpdates()
-        self.trainingTimer?.invalidate()
-        self.speakTimer?.invalidate()
-        self.stopSpeacTimer?.invalidate()
-        self.speeche(text: "終了")
-        self.buttonOpacity.toggle()
-        print("終了")
+        if trainingSucess != 3 {
+            trainingSucess = 3
+            self.motion.stopDeviceMotionUpdates()
+            self.trainingTimer?.invalidate()
+            self.speakTimer?.invalidate()
+            self.stopSpeacTimer?.invalidate()
+            backplankTime = maxbackplankTime
+            setCount = 1
+            trainingFinish = true
+            speechSynthesizer.pauseSpeaking(at: .word)
+            speeche(text: "お疲れさまでした")
+            buttonOpacity.toggle()
+            print("終了")
+        }
     }
     
     // 音声作動範囲
@@ -207,7 +223,9 @@ final class BackPlankManager: ObservableObject{
     }
     
     // 自動音声機能
+    // 自動音声機能
     func speeche(text: String) {
+        
         // AVSpeechSynthesizerのインスタンス作成
         speechSynthesizer = AVSpeechSynthesizer()
         // 読み上げる、文字、言語などの設定

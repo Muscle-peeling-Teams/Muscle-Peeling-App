@@ -12,14 +12,14 @@ class SettingViewModel: ObservableObject {
     static let shared: SettingViewModel = .init()
     @Published var selectedSet = [2,2,2,2,2,2]
     @Published var selectedPlay = [59,59,9,9,9,9]
-    @Published var set = [2,2,2,2,2,2]
-    @Published var play = [59,59,9,9,9,9]
+    @Published var set = [3,3,3,3,3,3]
+    @Published var play = [60,60,10,10,10,10]
     
     func SetTraining(num: Int) -> Int {
-         return selectedSet[num]
+         return set[num]
     }
     
     func CountTraining(num: Int) -> Int {
-        return selectedPlay[num]
+        return play[num]
     }
 }

@@ -63,9 +63,14 @@ struct ReadyView: View {
                 )
                 .border(Color.black)
             
+<<<<<<< HEAD
+            if image == "プランク" ||  image == "バックプランク" {
+                // 四角形の描画
+=======
             
             // 四角形の描画
             if image == "プランク" || image == "バックプランク" {
+>>>>>>> origin/main
                 Rectangle()
                     .fill(Color.white)
                 // 図形の塗りつぶしに使うViewを指定
@@ -76,7 +81,13 @@ struct ReadyView: View {
                         .foregroundColor(.black)
                     )
                     .border(Color.black)
+<<<<<<< HEAD
+                
+            } else  {
+                // 四角形の描画
+=======
             } else {
+>>>>>>> origin/main
                 Rectangle()
                     .fill(Color.white)
                 // 図形の塗りつぶしに使うViewを指定

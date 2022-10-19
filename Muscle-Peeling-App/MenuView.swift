@@ -13,25 +13,33 @@ struct MenuView: View {
     @StateObject var settingViewModel: SettingViewModel = .shared
     
     var body: some View {
+        
         ZStack{
             ScrollView{
+                //横並び
                 HStack(spacing: 30){
+                    
+                    //左側を縦並びに
                     VStack(spacing: 30){
+                        
+                        Spacer()
                         ForEach(0..<viewModel.leftMenu.count){ number in
                             VStack(spacing: 0){
                                 
-                                
+                                //画像
                                 Image("\(viewModel.leftMenu[number])")
                                     .resizable()
                                     .frame(width: 150, height: 200)
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
+                                        //上に名前表示
                                         Text("\(viewModel.leftMenu[number])")
                                             .frame(width: 150, height: 200,alignment: .top)
                                     )
                                 
+                                //選択ボタン
                                 Button(action: {
-                                    image = viewModel.leftMenu[viewModel.selectNumber(image: viewModel.leftMenu[number])]
+                                    image = viewModel.leftMenu[number]
                                     viewModel.showingModal.toggle()
                                 }){
                                     Text("選択")
@@ -39,46 +47,53 @@ struct MenuView: View {
                                         .background(Color.yellow)
                                 }
                                 .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    ReadyView(settingViewModel: settingViewModel, num: number, image: $image)
+                                    ReadyView(settingViewModel: settingViewModel, num: viewModel.selectNumber(image: image), image: $image)
                                 }
                             }
                             
                         }
                     }
+                    //右側を縦並びに
                     VStack(spacing: 30){
                         
+                        Spacer()
+                        
+                        //設定ボタン
                         Button(action: {
                             print("Button")
                             viewModel.SettingModal.toggle()
                         }) {
-                            RoundedRectangle(cornerRadius: 50)
-                                .frame(width: 100, height: 60)
-                                .foregroundColor(Color.blue)
+                            Image("設定")
+                                .resizable()
+                                .frame(width: 150, height: 200)
+                                .aspectRatio(contentMode: .fit)
                                 .overlay(
+                                    //上に名前表示
                                     Text("設定")
-                                        .bold()
-                                        .padding()
-                                        .frame(width: 110, height: 100)
-                                        .foregroundColor(Color.black)
+                                        .frame(width: 150, height: 200,alignment: .bottom)
+                                    
                                 )
                         }
                         .fullScreenCover(isPresented: $viewModel.SettingModal) {
                             SettingView(viewModel: settingViewModel)
                             }
                         
+                        Spacer()
+                                                
+                        //右側のメニュー
                         ForEach(0..<viewModel.rightMenu.count){ number in
                             VStack(spacing: 0){
-                                
-                                
+                                //画像
                                 Image("\(viewModel.rightMenu[number])")
                                     .resizable()
                                     .frame(width: 150, height: 200)
                                     .aspectRatio(contentMode: .fit)
                                     .overlay(
+                                        //上に名前表示
                                         Text("\(viewModel.rightMenu[number])")
                                             .frame(width: 150, height: 200,alignment: .top)
                                     )
-                                
+                                //選択ボタン
                                 Button(action: {
                                     image = viewModel.rightMenu[number]
                                     viewModel.showingModal.toggle()
@@ -88,7 +103,7 @@ struct MenuView: View {
                                         .background(Color.yellow)
                                 }
                                 .fullScreenCover(isPresented: $viewModel.showingModal) {
-                                    ReadyView(settingViewModel: settingViewModel, num: number, image: $image)
+                                    ReadyView(settingViewModel: settingViewModel, num: viewModel.selectNumber(image: image), image: $image)
                                 }
                             }
                             

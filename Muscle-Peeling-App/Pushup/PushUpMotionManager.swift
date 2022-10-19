@@ -39,7 +39,9 @@ final class PushUpMotionManager: ObservableObject{
     @Published var trainingFinished = false
     //メニューへ戻るボタンの表示判定
     @Published var finishActionButton = false
-
+    //一時停止用の判定変数
+    @Published var pauseNum = 3
+    
     // センサーの値
     var x = 0.00
     var y = 0.00
@@ -85,7 +87,7 @@ final class PushUpMotionManager: ObservableObject{
                 self.speeche(text: String(self.countDown))
             }
             print("\(self.countDown)")
-
+            
             if self.countDown <= 0 {
                 self.timer?.invalidate()
                 self.buttonOpacity.toggle()
@@ -97,17 +99,45 @@ final class PushUpMotionManager: ObservableObject{
     // 腕立て
     func pushUpStart() {
         trainingCount = 1
+        pauseNum = 0
         speakTimes(SensorJudge:sensorjudge)
-            speeche(text: "はじめてください")
+        speeche(text: "はじめてください")
         startQueuedUpdates()
         pushUpCount()
     }
     
+    //一時停止からの再開処理
     func pauseRestart(){
-        speakTimes(SensorJudge:sensorjudge)
-            speeche(text: "再開してください")
-        startQueuedUpdates()
-        pushUpCount()
+        speechSynthesizer.pauseSpeaking(at: .word)
+        self.speechSynthesizer.pauseSpeaking(at: .word)
+        self.speakTimes(SensorJudge:self.sensorjudge)
+        self.speeche(text: "再開してください")
+        self.pauseTimer?.invalidate()
+        self.sensorjudge = false
+        self.startQueuedUpdates()
+        self.pushUpCount()
+        
+//        時間制の休憩は廃止
+//        var pauseTime = 10
+//        pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){_ in
+//            pauseTime -= 1
+//
+//            if pauseTime <= 5 {
+//                if pauseTime > 0 {
+//                    self.speeche(text: String(pauseTime))
+//                }
+//
+//                if pauseTime <= 0{
+//                    self.speechSynthesizer.pauseSpeaking(at: .word)
+//                    self.speakTimes(SensorJudge:self.sensorjudge)
+//                    self.speeche(text: "再開してください")
+//                    self.pauseTimer?.invalidate()
+//                    self.sensorjudge = false
+//                    self.startQueuedUpdates()
+//                    self.pushUpCount()
+//                }
+//            }
+//        }
     }
     
     // トレーニング（回数式）
@@ -132,73 +162,78 @@ final class PushUpMotionManager: ObservableObject{
             }
         }
     }
-
+    
+    //1セット終了時のアクション
     func pauseAction(){
+        pauseNum = 3
         self.motion.stopDeviceMotionUpdates()
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
         self.stopSpeacTimer?.invalidate()
         self.speeche(text: "休憩してください、休憩時間30秒です")
-        var pauseTime = 10
+        var pauseTime = 30
         
         pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){_ in
             pauseTime -= 1
-
+            
             if pauseTime <= 5 {
                 if pauseTime > 0 {
-                self.speeche(text: String(pauseTime))
+                    self.speeche(text: String(pauseTime))
                 }
-
+                
                 if pauseTime <= 0{
                     self.pauseTimer?.invalidate()
                     self.sensorjudge = false
+                    pauseTime = 0
                     self.pushUpStart()
                 }
             }
         }
     }
     
+    //一時停止時のアクション
     func pauseTraining(){
+        speechSynthesizer.pauseSpeaking(at: .word)
+        if pauseNum == 0 {
+            pauseNum = 1
+            speechSynthesizer.pauseSpeaking(at: .word)
+            print("一時停止")
+            self.trainingTimer?.invalidate()
+            self.speakTimer?.invalidate()
+            self.stopSpeacTimer?.invalidate()
+            speeche(text: "一時停止します、再開する場合は再度このボタンを押してください")
+            print(pauseNum)
+            
+        } else if pauseNum == 1 {
+            pauseNum = 0
+            speechSynthesizer.pauseSpeaking(at: .word)
+            print("再開")
+            if !speechSynthesizer.isSpeaking {
+                speechSynthesizer.pauseSpeaking(at: .word)
+            }
+            pauseRestart()
+            print(pauseNum)
+        }
+    }
+    
+    // トレーニング終了
+    func stopTraining() {
+        // 終了
+        speechSynthesizer.pauseSpeaking(at: .word)
         self.motion.stopDeviceMotionUpdates()
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
         self.stopSpeacTimer?.invalidate()
-        self.speeche(text: "10秒だけ休憩してください")
-        var pauseTime = 10
-        
-        pauseTimer = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true){_ in
-            pauseTime -= 1
-
-            if pauseTime <= 5 {
-                if pauseTime > 0 {
-                self.speeche(text: String(pauseTime))
-                }
-
-                if pauseTime <= 0{
-                    self.pauseTimer?.invalidate()
-                    self.sensorjudge = false
-                    self.pauseRestart()
-                }
-            }
-        }
+        self.speeche(text: "中止してメニューに戻ります")
+        self.buttonOpacity.toggle()
+        print("中止")
+        //finishActionButton = true
+        trainingFinished = true
     }
-
-        // トレーニング終了
-        func stopTraining() {
-            // 終了
-            self.motion.stopDeviceMotionUpdates()
-            self.trainingTimer?.invalidate()
-            self.speakTimer?.invalidate()
-            self.stopSpeacTimer?.invalidate()
-            self.speeche(text: "中止してメニューに戻ります")
-            self.buttonOpacity.toggle()
-            print("中止")
-            //finishActionButton = true
-            trainingFinished = true
-        }
     
     func finishTraining(){
         // 終了
+        speechSynthesizer.pauseSpeaking(at: .word)
         self.motion.stopDeviceMotionUpdates()
         self.trainingTimer?.invalidate()
         self.speakTimer?.invalidate()
@@ -210,91 +245,91 @@ final class PushUpMotionManager: ObservableObject{
         trainingFinished = true
     }
     
-        // 音声作動範囲
-        //sucess判定は腕立てでいる？腰が浮いてるとかの判定？
+    // 音声作動範囲
+    //sucess判定は腕立てでいる？腰が浮いてるとかの判定？
     func speakTimes(SensorJudge: Bool) {
         
-            speakTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+        speakTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            
+            switch(self.sensorjudge){
                 
-                switch(self.sensorjudge){
-                    
-                case true:
-
-                    if self.x >= 0.5{
-                        //現在の回数(init:0) > 設定回数(test:3)
-                        if self.trainingCount >= self.settingCount{
-                            //現在のセット数と設定セット数の比較
-                            if self.trainingSetCount >= self.settingSetCount{
-                                self.finishTraining()
-                                
-                            }else{
-                                self.trainingSetCount += 1
-                                self.motion.stopDeviceMotionUpdates()
-                                self.pauseAction()
-                            }
-
-                        } else {
+            case true:
+                
+                if self.x >= 0.5{
+                    //現在の回数(init:0) > 設定回数(test:3)
+                    if self.trainingCount >= self.settingCount{
+                        //現在のセット数と設定セット数の比較
+                        if self.trainingSetCount >= self.settingSetCount{
+                            self.finishTraining()
+                            
+                        }else{
+                            self.trainingSetCount += 1
+                            self.motion.stopDeviceMotionUpdates()
+                            self.pauseAction()
+                        }
+                        
+                    } else {
                         self.adviceSensor(sucess: "\(self.trainingCount)回、下げてください", sensorJudge: self.sensorjudge)
-                            self.sensorjudge = false
-                        }
-                    }
-
-                case false:
-                    if self.x <= -0.5{
-                        self.adviceSensor(sucess: "あげてください", sensorJudge: self.sensorjudge)
-                        self.sensorjudge = true
-                    }
-                }
-            }
-        }
-
-            // 音声指導
-    func adviceSensor(sucess: String, sensorJudge: Bool) {
-        
-                self.speakTimer?.invalidate()
-                self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-        
-                    switch(sensorJudge){
-                    case true:
-                        
-                        if self.speechSynthesizer.isSpeaking{
-                            self.speechSynthesizer.pauseSpeaking(at: .word)
-                        }
-                        self.speeche(text: sucess)
                         self.sensorjudge = false
-                        
-                        if !self.speechSynthesizer.isSpeaking{
-                            self.trainingCount += 1
-                            self.stopSpeacTimer?.invalidate()
-                            self.speakTimes(SensorJudge: self.sensorjudge)
-                        }
-                        
-                    case false:
-                        
-                        if self.speechSynthesizer.isSpeaking{
-                            self.speechSynthesizer.pauseSpeaking(at: .word)
-                        }
-                        self.speeche(text: sucess)
-                        self.sensorjudge = true
-
-                        if !self.speechSynthesizer.isSpeaking{
-                            self.stopSpeacTimer?.invalidate()
-                            self.speakTimes(SensorJudge: self.sensorjudge)
-                        }
                     }
                 }
+                
+            case false:
+                if self.x <= -0.5{
+                    self.adviceSensor(sucess: "あげてください", sensorJudge: self.sensorjudge)
+                    self.sensorjudge = true
+                }
             }
-        
-        // 自動音声機能
-        func speeche(text: String) {
-            // AVSpeechSynthesizerのインスタンス作成
-            speechSynthesizer = AVSpeechSynthesizer()
-            // 読み上げる、文字、言語などの設定
-            let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
-            utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
-            utterance.rate = 0.5 // 読み上げ速度
-            utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
-            utterance.preUtteranceDelay = 0.0
-            speechSynthesizer.speak(utterance)
         }
     }
+    
+    // 音声指導
+    func adviceSensor(sucess: String, sensorJudge: Bool) {
+        
+        self.speakTimer?.invalidate()
+        self.stopSpeacTimer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            
+            switch(sensorJudge){
+            case true:
+                
+                if self.speechSynthesizer.isSpeaking{
+                    self.speechSynthesizer.pauseSpeaking(at: .word)
+                }
+                self.speeche(text: sucess)
+                self.sensorjudge = false
+                
+                if !self.speechSynthesizer.isSpeaking{
+                    self.trainingCount += 1
+                    self.stopSpeacTimer?.invalidate()
+                    self.speakTimes(SensorJudge: self.sensorjudge)
+                }
+                
+            case false:
+                
+                if self.speechSynthesizer.isSpeaking{
+                    self.speechSynthesizer.pauseSpeaking(at: .word)
+                }
+                self.speeche(text: sucess)
+                self.sensorjudge = true
+                
+                if !self.speechSynthesizer.isSpeaking{
+                    self.stopSpeacTimer?.invalidate()
+                    self.speakTimes(SensorJudge: self.sensorjudge)
+                }
+            }
+        }
+    }
+    
+    // 自動音声機能
+    func speeche(text: String) {
+        // AVSpeechSynthesizerのインスタンス作成
+        speechSynthesizer = AVSpeechSynthesizer()
+        // 読み上げる、文字、言語などの設定
+        let utterance = AVSpeechUtterance(string: text) // 読み上げる文字
+        utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP") // 言語
+        utterance.rate = 0.5 // 読み上げ速度
+        utterance.pitchMultiplier = 1.0 // 読み上げる声のピッチ
+        utterance.preUtteranceDelay = 0.0
+        speechSynthesizer.speak(utterance)
+    }
+}

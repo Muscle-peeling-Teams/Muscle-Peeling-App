@@ -16,7 +16,7 @@ struct SettingView: View {
     
     @ObservedObject var viewModel: SettingViewModel
     @ObservedObject var plankViewModel: PlankViewModel = .shared
-    @ObservedObject var backPlankViewModel: BackPlankManager = .shared
+    @ObservedObject var backPlankViewModel: BackPlankViewModel = .shared
     @ObservedObject var pushUpViewModel: PushUpMotionManager = .shared
     @ObservedObject var bulgarianSquatViewModel: SquatViewModel = .shared
     @ObservedObject var absViewModel: MotionManager = .shared
@@ -331,8 +331,13 @@ struct SettingView: View {
                     plankViewModel.setMaxCount = viewModel.SetTraining(num: 0)
                     plankViewModel.maxPlankTime = Double(viewModel.CountTraining(num: 0))
                     
+<<<<<<< HEAD
+                    backPlankViewModel.setCount = viewModel.SetTraining(num: 1)
+                    backPlankViewModel.backplankTime = Double(viewModel.CountTraining(num: 1))
+=======
                     backPlankViewModel.setMaxCount = viewModel.SetTraining(num: 1)
                     backPlankViewModel.setCount = viewModel.CountTraining(num: 1)
+>>>>>>> origin/main
                     bulgarianSquatViewModel.setMaxCount = viewModel.SetTraining(num: 2)
                     bulgarianSquatViewModel.maxCount = viewModel.SetTraining(num: 2)
                     absViewModel.setMaxCount = viewModel.SetTraining(num: 4)

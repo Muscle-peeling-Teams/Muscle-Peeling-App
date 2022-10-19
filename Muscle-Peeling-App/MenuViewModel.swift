@@ -11,14 +11,24 @@ class MenuViewModel: ObservableObject {
     @Published var showingModal = false
     @Published var SettingModal = false
     let leftMenu = ["プランク","ブルガリアンスクワット","腹筋"]
-    let rightMenu = ["バックプランク","スクワット","腕立て"]
+    let rightMenu = ["バックプランク","腕立て"]
     
     func selectNumber(image: String)-> Int{
-        var num = 0
-        if image == "プランク" {
+        var num = 4
+        if image == "腕立て" {
+            num = 5
+        }else if image == "プランク" {
             num = 0
-        } else if image == "バッグプランク" {
+        }else if image == "ブルガリアンスクワット"{
+            num = 2
+        }else if image == "バックプランク"{
             num = 1
+<<<<<<< HEAD
+        }else if image == "腹筋"{
+            num = 4
+        }else{
+            //処理なし
+=======
         } else if image == "ブルガリアンスクワット"{
             num = 2
         } else if image == "スクワット" {
@@ -27,6 +37,7 @@ class MenuViewModel: ObservableObject {
             num = 4
         } else if image == "腕立て" {
             num = 5
+>>>>>>> origin/main
         }
         return num
     }
